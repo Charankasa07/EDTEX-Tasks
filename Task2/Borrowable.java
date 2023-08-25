@@ -1,4 +1,5 @@
-public interface Borrowable{
+public interface Borrowable {
     void borrow();
+
     void returnBook();
 }
