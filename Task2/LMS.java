@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class LMS {
     public static void main(String[] args) throws Exception {
+        // creating dummy patron to access borrow and returnBook methods
         Patron dummyPatron = new Patron();
 
         while (true) {
@@ -23,8 +24,10 @@ public class LMS {
                     System.out.println("Is this a Fiction Book?");
                     boolean isFiction = scn.nextBoolean();
                     if (isFiction) {
+                        // creating FictionBook object if it is a fiction book
                         new Fiction();
                     } else {
+                        // creating a nonFiction book object if it is a non fiction book
                         new NonFiction();
                     }
                     break;
@@ -50,16 +53,18 @@ public class LMS {
                     dummyPatron.returnBook();
                     break;
                 case 9:
+                    Fiction.viewFictionBooks();
+                    break;
+                case 10:
+                    NonFiction.viewNonFictionBooks();
+                    break;
+                case 11:
                     System.exit(0);
                     scn.close();
                     break;
-                case 10:
-                    Fiction.viewFictionBooks();
-                    break;
-                case 11:
-                    NonFiction.viewNonFictionBooks();
-                    break;
-
+                default:
+                    System.out.println("\nPlease provide valid input\n");
+                    break;    
             }
 
         }
