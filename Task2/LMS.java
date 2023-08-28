@@ -15,9 +15,9 @@ public class LMS {
             System.out.println("6) Display Patrons");
             System.out.println("7) Borrow a Book");
             System.out.println("8) Return a Book");
-            System.out.println("9) Exit the Program");
-            System.out.println("10) Display Fiction Books");
-            System.out.println("11) Display Non Fiction Books");
+            System.out.println("9) Display Fiction Books");
+            System.out.println("10) Display Non Fiction Books");
+            System.out.println("11) Exit the Program");
             int choice = scn.nextInt();
             switch (choice) {
                 case 1:

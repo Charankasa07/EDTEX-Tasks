@@ -1,10 +1,10 @@
 import java.util.*;
 
 public class Book {
-    protected String title;
-    protected String author;
-    protected String ISBN;
-    protected int quantity;
+    private String title;
+    private String author;
+    private String ISBN;
+    private int quantity;
 
     Book() {
     }
