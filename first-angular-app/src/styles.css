@@ -1,0 +1,6 @@
+/* You can add global styles to this file, and also import other style files */
+:root{
+    --accent-color : rgb(225, 205, 254);
+    --primary-color : rgb(20, 125, 253);
+    --secondary-color:rgb(199, 174, 238);
+}
