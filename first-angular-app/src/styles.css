@@ -4,3 +4,8 @@
     --primary-color : rgb(20, 125, 253);
     --secondary-color:rgb(199, 174, 238);
 }
+a{
+    text-decoration: none;
+    color: var(--primary-color);
+    margin-left: 20px;
+}

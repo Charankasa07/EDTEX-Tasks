@@ -14,6 +14,7 @@ input[type="text"] {
   display: inline-block;
   height: 10%;
   width: 30%;
+  margin-left: 20px;
 }
 @media (min-width: 500px) and (max-width: 768px) {
   .results{
