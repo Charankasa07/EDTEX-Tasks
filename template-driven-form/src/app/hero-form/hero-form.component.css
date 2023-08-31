@@ -5,16 +5,26 @@
     place-items: center;
 }
 .form{
-    min-width:30%;
-    width: fit-content;
+    /* min-width:30%; */
+    width: 60%;
     height: fit-content;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    border-radius: 10px;
     row-gap: 15px;
-    border: 2px solid rgb(82, 126, 126);
-    padding: 5% 2%;
+    padding: 3% 2%;
     color: rgb(82, 126, 126);
+    background-color:rgb(221, 237, 237) ;
+    outline: 3px solid rgb(82, 126, 126);
+    outline-offset: -7px;
+    outline-style: solid;
+    transition: ease-in 0.3s;
+}
+.form:hover{
+    outline-offset: 0.5px;
+    transform: scale(1.02);
+    box-shadow:30px 30px 10px rgb(215, 240, 240) ;
 }
 #details{
     display: flex;

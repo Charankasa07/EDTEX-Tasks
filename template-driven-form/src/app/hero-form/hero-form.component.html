@@ -8,7 +8,7 @@
     </div>
     <div class="form-group">
         <label for="alter-ego">Alter Ego</label>
-        <input type="text" id="alter-ego" class="form-control" [(ngModel)]="hero.alterEgo" name="alter-ego" />
+        <input type="text" id="alter-ego" class="form-control" [(ngModel)]="hero.alterEgo ==='No Alter Ego' ? '':hero.alterEgo" name="alter-ego" />
     </div>
     <div class="form-group">
       <label for="power">Hero Power</label>
@@ -31,10 +31,10 @@
         </div>
         <div id="values">
             <p>{{hero.name}}</p>
-            <p>{{hero.alterEgo}}</p>
+            <p>{{hero.alterEgo ?? "No Alter Ego"}}</p>
             <p>{{hero.power}}</p>
         </div>
     </div>
     <br>
-    <button type="button" class="btn btn-primary" (click)="submitted=false">Edit</button>
+    <button type="button" class="btn btn-primary" (click)="submitted=false" >Edit</button>
   </div>
