@@ -9,14 +9,18 @@ input {
 }
 button {
   margin-top: 20px;
-  margin-right: .5rem;
+  margin-right: .8rem;
   background-color: #eee;
   padding: 1rem;
   border-radius: 4px;
   font-size: 1rem;
+  transition: ease-out 0.2s;
+  outline: 2px solid #426776;
 }
 button:hover {
-  background-color: #cfd8dc;
+  background-color: #426776;
+  transform: scale(1.05);
+  outline: none;
 }
 button:disabled {
   background-color: #eee;

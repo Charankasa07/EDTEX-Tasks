@@ -24,13 +24,13 @@ h2 {
     padding: 1rem;
     font-size: 1.2rem;
     text-decoration: none;
-    display: inline-block;
     color: #fff;
     text-align: center;
     width: 100%;
     min-width: 70px;
     margin: .5rem auto;
     box-sizing: border-box;
+    transition: ease-in 0.2s;
   
     /* flexbox */
     order: 0;
