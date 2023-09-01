@@ -1,0 +1,12 @@
+<div class="container">
+    <form #registrationForm="ngForm" class="registration-form" (ngSubmit)="onRegister()">
+        <h3>Registration</h3>
+        <input type="text" name="name" placeholder="Name" required [(ngModel)]="user.name">
+        <input type="text" name="email" placeholder="Email" required [(ngModel)]="user.email">
+        <input type="text" name="mobile" placeholder="Mobile Number" required [(ngModel)]="user.mobile">
+        <input type="text" name="password" placeholder="Password" required [(ngModel)]="user.password">
+        <input type="date" name="dob" required [(ngModel)]="user.dob">
+        <button type="submit" class="btn btn-primary" [disabled]="registrationForm.invalid">Register</button>
+        <p>Already had an Account ? <a routerLink="/login">Login</a></p>
+    </form>
+</div>

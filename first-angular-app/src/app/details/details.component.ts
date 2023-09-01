@@ -2,8 +2,6 @@ import { Component, inject } from '@angular/core';
 import { HousingLocation } from '../housinglocation/housinglocation';
 import { HousingService } from '../housing.service';
 import { ActivatedRoute } from '@angular/router';
-import { CommonModule, formatCurrency } from '@angular/common';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ApplyForm } from './applyForm';
 
 @Component({
@@ -30,10 +28,6 @@ export class DetailsComponent {
   }
 
   submitApplication() {
-    this.housingService.submitApplication(
-      this.applyForm.firstName,
-      this.applyForm.lastName,
-      this.applyForm.email
-    );
+    this.housingService.submitApplication(this.applyForm);
   }
 }

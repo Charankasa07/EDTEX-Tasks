@@ -1,0 +1,6 @@
+img{
+    width: 50px;
+    aspect-ratio: 3/2;
+    margin: 1%;
+    mix-blend-mode: multiply;
+}

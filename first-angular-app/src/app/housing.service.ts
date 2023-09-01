@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ApplyForm } from './details/applyForm';
 import { HousingLocation } from './housinglocation/housinglocation';
 
 @Injectable({
@@ -112,9 +113,7 @@ export class HousingService {
 
   url = 'http://localhost:3000/locations';
 
-  async getAllHousingLocation(): Promise<HousingLocation[]> {
-    console.log("getAllHousingLocation");
-    
+  async getAllHousingLocation(): Promise<HousingLocation[]> {    
     const data = await fetch(this.url);
     return await data.json() ?? [];
   }
@@ -122,8 +121,8 @@ export class HousingService {
     const data = await fetch(`${this.url}/${id}`);
     return await data.json() ?? {};
   }
-  submitApplication(firstName : string,lastName:string,email : string){
-    console.log(`House Application recieved :- First Name : ${firstName}, Last Name : ${lastName}, Email : ${email}`);
+  submitApplication(applyForm : ApplyForm){
+    console.log(`House Application recieved :- First Name : ${applyForm.firstName}, Last Name : ${applyForm.lastName}, Email : ${applyForm.email}`);
     
   }
   constructor() {}

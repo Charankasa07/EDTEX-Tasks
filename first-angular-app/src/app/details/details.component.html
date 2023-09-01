@@ -1,6 +1,4 @@
 <article>
-    <a routerLink="/">Go Back</a>
-
     <img class="listing-photo" [src]="housingLocation?.photo" alt="House"/>
     <section class="listing-description">
         <h2 class="lisitng-heading">{{housingLocation?.name}}</h2>
@@ -16,13 +14,13 @@
     </section>
     <section class="listing-apply">
         <h2 class="section-heading">Apply now to live here</h2>
-        <form  (submit)="submitApplication()">
+        <form #Form="ngForm" (submit)="submitApplication();Form.reset()">
             <label for="first-name">First Name</label>
-            <input type="text" id="first-name"  [(ngModel)] = "applyForm.firstName" #firstName>
+            <input type="text" id="first-name"  [(ngModel)] = "applyForm.firstName" name="firstName">
             <label for="last-name">Last Name</label>
-            <input type="text" id="last-name" [(ngModel)] = "applyForm.lastName">
+            <input type="text" id="last-name" [(ngModel)] = "applyForm.lastName" name="lastName">
             <label for="email">Email</label>
-            <input type="text" id="email" [(ngModel)] = "applyForm.email">
+            <input type="text" id="email" [(ngModel)] = "applyForm.email" name="email">
             <button type="submit" class="btn btn-primary">Apply Now</button>
         </form>
     </section>
