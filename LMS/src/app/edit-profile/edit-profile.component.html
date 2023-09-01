@@ -1,0 +1,19 @@
+<div class="container">
+    <form #editForm="ngForm" class="edit-form" (ngSubmit)="save()">
+        <h3>Edit Profile</h3>
+        <input type="text" name="name" placeholder="Name" required [(ngModel)]="currentUser.name" #name="ngModel">
+        <p *ngIf="name.invalid && name.dirty" class="error">Name is Required</p>
+        <input type="text" name="email" placeholder="Email" required [(ngModel)]="currentUser.email" #email="ngModel">
+        <p *ngIf="email.invalid && email.dirty" class="error">Email is Required</p>
+        <input type="text" name="mobile" placeholder="Mobile Number" required [(ngModel)]="currentUser.mobile" #mobile="ngModel">
+        <p *ngIf="mobile.invalid && mobile.dirty" class="error">Mobile Number is Required</p>
+        <input type="password" name="password" placeholder="Password" required [(ngModel)]="currentUser.password" #password="ngModel" (input)="passwordValidate(password.value)">
+        <p *ngIf="password.invalid && password.dirty && !passwordError" class="error">Password is Required</p>
+        <p *ngIf="passwordError.length" class="error">{{passwordError}}</p>
+        <input type="date" name="dob" required [(ngModel)]="currentUser.dob" #dob="ngModel">
+        <div class="buttons">
+            <button class="btn btn-primary" (click)="back()">Back</button>
+            <button type="submit" class="btn btn-primary" [disabled]="editForm.invalid">Save</button>
+        </div>
+    </form>
+</div>

@@ -12,7 +12,7 @@ h3{
     width: 100%;
     color: rgb(4, 101, 191);
 }
-.registration-form{
+.book-form{
     border: 2px solid steelblue;
     /* padding: 2% 2%; */
     width: 35%;
@@ -40,4 +40,9 @@ select{
     padding: 0% 1%;
     width: 70%;
     text-align: center;
+}
+.buttons{
+    display: flex;
+    justify-content: space-around;
+    width: 70%;
 }

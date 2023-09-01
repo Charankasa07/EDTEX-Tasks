@@ -1,0 +1,13 @@
+<div class="container">
+    <form #borrowForm="ngForm" class="borrow-form" (ngSubmit)="borrow()">
+        <h3>Borrow Book</h3>
+        <input type="text" name="isbn" placeholder="ISBN" required [(ngModel)]="booking.isbn" #isbn="ngModel">
+        <p *ngIf="isbn.invalid && isbn.dirty" class="error">ISBN is Required</p>
+        <input type="text" name="patron" placeholder="Patron Name" required [(ngModel)]="booking.patronName" #patron="ngModel">
+        <p *ngIf="patron.invalid && patron.dirty" class="error">Patron is Required</p>
+        <div class="buttons">
+            <button class="btn btn-primary" (click)="back()">Back</button>
+            <button type="submit" class="btn btn-primary" [disabled]="borrowForm.invalid">Save</button>
+        </div>
+    </form>
+</div>

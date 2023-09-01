@@ -1,0 +1,17 @@
+<div class="container">
+    <form #bookForm="ngForm" class="book-form" (ngSubmit)="addBook()">
+        <h3>Add Book</h3>
+        <input type="text" name="isbn" placeholder="ISBN" required [(ngModel)]="book.isbn" #isbn="ngModel">
+        <p *ngIf="isbn.invalid && isbn.dirty" class="error">ISBN is Required</p>
+        <input type="text" name="title" placeholder="Title of the Book" required [(ngModel)]="book.title" #title="ngModel">
+        <p *ngIf="title.invalid && title.dirty" class="error">Title is Required</p>
+        <input type="text" name="author" placeholder="Author of the Book" required [(ngModel)]="book.author" #author="ngModel">
+        <p *ngIf="author.invalid && author.dirty" class="error">Author is Required</p>
+        <input type="text" name="quantity" placeholder="Quantity" required [(ngModel)]="book.quantity" #quantity="ngModel" >
+        <p *ngIf="quantity.invalid && quantity.dirty" class="error">Quantity is Requied</p>
+        <div class="buttons">
+            <button class="btn btn-primary" (click)="back()">Back</button>
+            <button type="submit" class="btn btn-primary" [disabled]="bookForm.invalid">Save</button>
+        </div>
+    </form>
+</div>
