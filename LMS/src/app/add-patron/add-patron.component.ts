@@ -34,7 +34,7 @@ export class AddPatronComponent {
       this.passwordError = '';
     }
   }
-  save(){
+  addPatron(){
       const filteredPatrons = this.patrons.filter(patron => patron.email === this.patron.email)
       if(filteredPatrons.length){
           this.message = "Patron with given mail id alread exists"
@@ -48,7 +48,8 @@ export class AddPatronComponent {
           this.registerUsers = JSON.parse(registerUsersData)
           this.registerUsers.push(this.patron)
           localStorage.setItem('registerUsers',JSON.stringify(this.registerUsers))
-          this.location.back()
+          this.location.go('/view-patrons')
+          window.location.reload()
         }
       }
   }

@@ -22,12 +22,14 @@ export class AddBookComponent {
         this.books=JSON.parse(booksData)
         this.books.push(this.book)
         localStorage.setItem('books',JSON.stringify(this.books))
-        this.location.back()
+        this.location.go('/patron-list/view-books')
+        window.location.reload()
       }
       else{
         this.books.push(this.book)
         localStorage.setItem('books',JSON.stringify(this.books))
-        this.location.back()
+        this.location.go('/patron-list/view-books')
+        window.location.reload()
       }
     }
     back(){

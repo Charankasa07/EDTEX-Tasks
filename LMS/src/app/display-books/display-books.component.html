@@ -1,5 +1,6 @@
 <div class="container">
-    <p id="message" *ngIf="!books.length">No books Available</p>
+    <p class="message" *ngIf="!books.length">No books Available</p>
+    <p class="message" *ngIf="books.length">Books</p>
     <div *ngFor="let book of books" class="book">
         <p>{{book.isbn | uppercase}}</p>
         <p>{{book.title|titlecase}}</p>

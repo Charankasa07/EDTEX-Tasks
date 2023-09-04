@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { UserRegister } from '../user';
 import { Location } from '@angular/common';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -8,6 +9,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./edit-profile.component.css']
 })
 export class EditProfileComponent implements OnInit{
+  constructor(private cookieService: CookieService) { }
   location: Location = inject(Location);
   currentUser : UserRegister ={
     name:'',
@@ -19,7 +21,7 @@ export class EditProfileComponent implements OnInit{
   }
   passwordError = '';
   ngOnInit(): void {
-      let currentUser = localStorage.getItem('currentUser')
+      let currentUser = this.cookieService.get('currentUser')
       if(currentUser){
         this.currentUser = JSON.parse(currentUser)
       }
@@ -32,7 +34,7 @@ export class EditProfileComponent implements OnInit{
     }
   }
   save(){
-    localStorage.setItem("currentUser",JSON.stringify(this.currentUser))
+    this.cookieService.set("currentUser",JSON.stringify(this.currentUser),1)
     this.location.back()
   }
   back(){

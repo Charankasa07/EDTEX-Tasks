@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { Book } from '../book';
 import { UserLogin, UserRegister } from '../user';
 import { Location } from '@angular/common';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-book-list',
@@ -9,6 +10,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./book-list.component.css']
 })
 export class BookListComponent implements OnInit{
+  constructor(private cookieService: CookieService) { }
   location : Location = inject(Location);
   loginUsers : UserLogin[]=[]
     books : Book[] =[]
@@ -22,7 +24,7 @@ export class BookListComponent implements OnInit{
       role:''
     };
     ngOnInit():void{
-      const currentUser= localStorage.getItem('currentUser')
+      const currentUser= this.cookieService.get('currentUser')
       if(currentUser!=null){
         this.currentUser = JSON.parse(currentUser)
         console.log(this.currentUser);  
@@ -34,14 +36,14 @@ export class BookListComponent implements OnInit{
       
     }
     logout(){
-      localStorage.removeItem("currentUser");
+      this.cookieService.delete("currentUser");
       this.location.go('/login')
       window.location.reload()
-      const loginUsers = localStorage.getItem('loginUsers')
-      if(loginUsers!=null){
-        this.loginUsers = JSON.parse(loginUsers)
-      }
-     let newLoginUsers = this.loginUsers.filter(user => user.email !== this.currentUser.email)
-     localStorage.setItem('loginUsers',JSON.stringify(newLoginUsers))
+    //   const loginUsers = localStorage.getItem('loginUsers')
+    //   if(loginUsers!=null){
+    //     this.loginUsers = JSON.parse(loginUsers)
+    //   }
+    //  let newLoginUsers = this.loginUsers.filter(user => user.email !== this.currentUser.email)
+    //  localStorage.setItem('loginUsers',JSON.stringify(newLoginUsers))
     }
 }

@@ -15,6 +15,7 @@ import { BorrowBookComponent } from './borrow-book/borrow-book.component';
 import { ReturnBookComponent } from './return-book/return-book.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { DisplayBooksComponent } from './display-books/display-books.component';
+import { DisplayPatronsComponent } from './display-patrons/display-patrons.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { DisplayBooksComponent } from './display-books/display-books.component';
     BorrowBookComponent,
     ReturnBookComponent,
     EditProfileComponent,
-    DisplayBooksComponent
+    DisplayBooksComponent,
+    DisplayPatronsComponent
   ],
   imports: [
     BrowserModule,

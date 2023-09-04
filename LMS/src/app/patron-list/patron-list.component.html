@@ -2,16 +2,8 @@
     <a routerLink="add-book" >Add Book</a>
     <a routerLink="add-patron" >Add Patron</a>
     <a routerLink="view-books" >Books</a>
+    <a routerLink="view-patrons">View Patrons</a>
     <p (click)="logout()" id="logout">Logout</p>
 </div>
 <router-outlet></router-outlet>
-<div class="container">
-    <p class="message" *ngIf="!patrons.length">No Patrons Available</p>
-    <p class="message">Patrons</p>
-    <div *ngFor="let patron of patrons" class="patron">
-        <p>{{patron.name | titlecase}}</p>
-        <p>{{patron.email}}</p>
-        <p>{{patron.mobile}}</p>
-        <p>{{patron.dob | date }}</p>
-    </div>
-</div>
+

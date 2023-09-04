@@ -1,5 +1,5 @@
 <div class="container">
-    <form #patronForm="ngForm" class="patron-form" (ngSubmit)="save()">
+    <form #patronForm="ngForm" class="patron-form" (ngSubmit)="addPatron()">
         <h3>Add Patron</h3>
         <p *ngIf="message.length">{{message}}</p>
         <input type="text" name="name" placeholder="Name" required [(ngModel)]="patron.name" #name="ngModel">

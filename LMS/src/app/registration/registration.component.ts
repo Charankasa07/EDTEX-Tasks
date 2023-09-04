@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Patron, UserRegister } from '../user';
 import { Location } from '@angular/common';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-registration',
@@ -8,6 +9,8 @@ import { Location } from '@angular/common';
   styleUrls: ['./registration.component.css'],
 })
 export class RegistrationComponent implements OnInit {
+
+  constructor(private cookieService: CookieService) { }
   location : Location = inject(Location);
   registerUsers: UserRegister[] = [];
   patrons: Patron[] = [];
@@ -32,12 +35,12 @@ export class RegistrationComponent implements OnInit {
       if (this.user.role === 'patron') {
         this.patrons.push(this.user);
         localStorage.setItem('patrons', JSON.stringify(this.patrons));
-        localStorage.setItem('currentUser',JSON.stringify(this.user))
+        this.cookieService.set('currentUser',JSON.stringify(this.user),1)
         this.location.go('/book-list')
         window.location.reload()
       }
       else{
-        localStorage.setItem('currentUser',JSON.stringify(this.user))
+        this.cookieService.set('currentUser',JSON.stringify(this.user),1)
         this.location.go('/patron-list')
         window.location.reload()
       }

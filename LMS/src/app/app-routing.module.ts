@@ -5,6 +5,7 @@ import { AddPatronComponent } from './add-patron/add-patron.component';
 import { BookListComponent } from './book-list/book-list.component';
 import { BorrowBookComponent } from './borrow-book/borrow-book.component';
 import { DisplayBooksComponent } from './display-books/display-books.component';
+import { DisplayPatronsComponent } from './display-patrons/display-patrons.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -54,6 +55,10 @@ const routes: Routes = [
       {
         path:'view-books',
         component : DisplayBooksComponent
+      },
+      {
+        path:'view-patrons',
+        component:DisplayPatronsComponent
       }
     ],
   },

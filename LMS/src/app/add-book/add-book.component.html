@@ -1,5 +1,5 @@
 <div class="container">
-    <form #bookForm="ngForm" class="book-form" (ngSubmit)="addBook()">
+    <form #bookForm="ngForm" class="book-form">
         <h3>Add Book</h3>
         <input type="text" name="isbn" placeholder="ISBN" required [(ngModel)]="book.isbn" #isbn="ngModel">
         <p *ngIf="isbn.invalid && isbn.dirty" class="error">ISBN is Required</p>
@@ -11,7 +11,7 @@
         <p *ngIf="quantity.invalid && quantity.dirty" class="error">Quantity is Requied</p>
         <div class="buttons">
             <button class="btn btn-primary" (click)="back()">Back</button>
-            <button type="submit" class="btn btn-primary" [disabled]="bookForm.invalid">Save</button>
+            <button type="submit" class="btn btn-primary" [disabled]="bookForm.invalid" (click)="addBook()">Save</button>
         </div>
     </form>
 </div>

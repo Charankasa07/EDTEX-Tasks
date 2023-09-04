@@ -7,7 +7,7 @@ import { Book } from '../book';
   styleUrls: ['./display-books.component.css']
 })
 export class DisplayBooksComponent implements OnInit{
-  books !: Book[]
+  books : Book[]=[]
   ngOnInit(){
     const booksData = localStorage.getItem('books')
     if(booksData){

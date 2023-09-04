@@ -1,0 +1,10 @@
+<div class="container">
+    <p class="message" *ngIf="!patrons.length">No Patrons Available</p>
+    <p class="message" *ngIf="patrons.length">Patrons</p>
+    <div *ngFor="let patron of patrons" class="patron">
+        <p>{{patron.name | titlecase}}</p>
+        <p>{{patron.email}}</p>
+        <p>{{patron.mobile}}</p>
+        <p>{{patron.dob | date }}</p>
+    </div>
+</div>
