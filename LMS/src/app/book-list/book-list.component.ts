@@ -35,15 +35,4 @@ export class BookListComponent implements OnInit{
       }
       
     }
-    logout(){
-      this.cookieService.delete("currentUser");
-      this.location.go('/login')
-      window.location.reload()
-    //   const loginUsers = localStorage.getItem('loginUsers')
-    //   if(loginUsers!=null){
-    //     this.loginUsers = JSON.parse(loginUsers)
-    //   }
-    //  let newLoginUsers = this.loginUsers.filter(user => user.email !== this.currentUser.email)
-    //  localStorage.setItem('loginUsers',JSON.stringify(newLoginUsers))
-    }
 }

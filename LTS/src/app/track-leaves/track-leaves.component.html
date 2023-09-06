@@ -1,0 +1,18 @@
+<div class="container">
+    <table class="table">
+        <tr>
+            <th>Leave Type</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+        <tr [ngClass]="e? 'even' : 'odd'" *ngFor="let leave of currentUser.leaves;let e = even;let o=odd">
+            <td>{{leave.type |titlecase}}</td>
+            <td>{{leave.startDate | date:'medium'}}</td>
+            <td>{{leave.endDate | date:'medium'}}</td>
+            <td>{{leave.status | titlecase}}</td>
+            <td id="action"><a [routerLink]="['../edit-leave',leave.id]">✎</a><button (click)="delete(leave.id)">🗑️</button></td>
+        </tr>
+    </table>
+</div>

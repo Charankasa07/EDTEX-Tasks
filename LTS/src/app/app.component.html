@@ -1,0 +1,11 @@
+<nav>
+  <a id="title" routerLink="">Leave Tracking System</a>
+  <div class="login-register" *ngIf="!currentUser.name.length">
+    <a routerLink="login">Login</a>
+    <a routerLink="register">Register</a>
+  </div>
+  <div class="logout" *ngIf="currentUser.name.length">
+    <p (click)="logout()">Logout</p>
+  </div>
+</nav>
+<router-outlet></router-outlet>

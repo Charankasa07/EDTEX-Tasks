@@ -1,0 +1,21 @@
+<div class="container">
+    <p *ngIf="!pendingLeaves.length">No Leaves</p>
+    <table *ngIf="pendingLeaves.length" class="table">
+        <tr>
+            <th>Employee Name</th>
+            <th>Leave Type</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Reason</th>
+            <th>Action</th>
+        </tr>
+        <tr [ngClass]="e? 'even' : 'odd'" *ngFor="let leave of pendingLeaves;let e=even;let o=odd">
+            <td>{{leave.name | titlecase}}</td>
+            <td>{{leave.type | titlecase}}</td>
+            <td>{{leave.startDate | date:'medium'}}</td>
+            <td>{{leave.endDate | date:'medium'}}</td>
+            <td>{{leave.reason ? leave.reason  : "-" | titlecase}}</td>
+            <td><button (click)="accept(leave.id)">✔︎</button><button (click)="reject(leave.id)">✘</button></td>
+        </tr>
+    </table>
+</div>

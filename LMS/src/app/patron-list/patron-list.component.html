@@ -1,9 +1,9 @@
 <div class="options">
-    <a routerLink="add-book" >Add Book</a>
-    <a routerLink="add-patron" >Add Patron</a>
-    <a routerLink="view-books" >Books</a>
-    <a routerLink="view-patrons">View Patrons</a>
-    <p (click)="logout()" id="logout">Logout</p>
+    <a routerLink="add-book" (click)="display=false">Add Book</a>
+    <a routerLink="add-patron" (click)="display=false">Add Patron</a>
+    <a routerLink="view-books" (click)="display=false">View Books</a>
+    <a routerLink="view-patrons" (click)="display=false">View Patrons</a>
 </div>
+<p id="welcome" *ngIf="display">Welcome {{currentUser.name | titlecase}} </p>
 <router-outlet></router-outlet>
 

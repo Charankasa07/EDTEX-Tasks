@@ -46,10 +46,12 @@
     color: whitesmoke;
 
 }
-#message{
+#welcome,#message{
     margin-top: 1%;
     width: 100%;
     text-align: center;
-    text-transform: uppercase;
     font-weight: 600;
+}
+#message{
+    text-transform: uppercase;
 }

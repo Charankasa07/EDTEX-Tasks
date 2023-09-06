@@ -41,3 +41,6 @@ select{
     width: 70%;
     text-align: center;
 }
+a{
+    text-decoration:none;
+}

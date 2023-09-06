@@ -1,8 +1,8 @@
 <div class="options">
-    <a routerLink="borrow-book">Borrow Book</a>
-    <a routerLink="return-book">Return Book</a>
-    <a routerLink="edit-profile">Edit Profile</a>
-    <p (click)="logout()" id="logout">Logout</p>
+    <a routerLink="borrow-book" (click)="display=false">Borrow Book</a>
+    <a routerLink="return-book" (click)="display=false">Return Book</a>
+    <a routerLink="view-books" (click)="display=false">View Books</a>
+    <a routerLink="edit-profile" (click)="display=false">Edit Profile</a>
 </div>
+<p id="welcome" *ngIf="display">Welcome {{currentUser.name | titlecase}} </p>
 <router-outlet></router-outlet>
-<app-display-books></app-display-books>

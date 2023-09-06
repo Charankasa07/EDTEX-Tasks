@@ -32,3 +32,6 @@ input{
     font-weight: lighter;
     padding-left: 2%;
 }
+a{
+    text-decoration:none;
+}

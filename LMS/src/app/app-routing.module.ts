@@ -17,54 +17,71 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    title:"Login"
   },
   {
     path: 'register',
     component: RegistrationComponent,
+    title:"Registration"
   },
   {
     path: 'book-list',
     component: BookListComponent,
+    title:"Dashboard",
     children: [
       {
         path: 'borrow-book',
         component: BorrowBookComponent,
+        title:"Borrow Book"
       },
       {
         path: 'return-book',
         component: ReturnBookComponent,
+        title:"Return Book"
       },
       {
         path:'edit-profile',
-        component:EditProfileComponent
+        component:EditProfileComponent,
+        title:"Edit Profile"
+      },
+      {
+        path:'view-books',
+        component:DisplayBooksComponent,
+        title:"Books"
       }
     ],
   },
   {
     path: 'patron-list',
     component: PatronListComponent,
+    title:"Dashboard",
     children: [
       {
         path: 'add-patron',
         component: AddPatronComponent,
+        title:"Add Patron"
       },
       {
         path: 'add-book',
         component: AddBookComponent,
+        title:"Add Book"
       },
       {
         path:'view-books',
-        component : DisplayBooksComponent
+        component : DisplayBooksComponent,
+        title:"Books"
       },
       {
         path:'view-patrons',
-        component:DisplayPatronsComponent
+        component:DisplayPatronsComponent,
+        title:"Patrons"
       }
     ],
   },
   {
     path: '',
     component: HomeComponent,
+    title:"Library Management System"
   },
 ];
 

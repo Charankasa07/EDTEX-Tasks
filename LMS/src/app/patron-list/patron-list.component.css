@@ -25,3 +25,9 @@
     color: whitesmoke;
 
 }
+#welcome{
+    margin-top: 1%;
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
+}

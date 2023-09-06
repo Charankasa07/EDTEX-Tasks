@@ -27,4 +27,32 @@ nav p{
 a{
     text-decoration: none;
     color: white;
+    height: 40px;
+    margin: 0% 1%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0% 3%;
+    border-radius: 5%;
+    cursor: pointer;
+    transition: ease-in 0.2s;
+}
+#logout:hover,a:hover{
+    background-color: rgb(20, 138, 248);
+    color: azure;
+}
+.logout{
+    display:flex ;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right:2% ;
+    font-size: 19px;
+    width: 30%;
+}
+#logout{
+    height: 40px;
+    margin: 0% 1%;
+    padding: 1.3% 3%;
+    border-radius: 5%;
+    transition: ease-in 0.2s;
 }

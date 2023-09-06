@@ -48,7 +48,7 @@ export class AddPatronComponent {
           this.registerUsers = JSON.parse(registerUsersData)
           this.registerUsers.push(this.patron)
           localStorage.setItem('registerUsers',JSON.stringify(this.registerUsers))
-          this.location.go('/view-patrons')
+          this.location.go('/patron-list/view-patrons')
           window.location.reload()
         }
       }

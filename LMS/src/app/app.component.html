@@ -1,8 +1,16 @@
-<nav>
+<nav *ngIf="!currentUser">
   <p routerLink="/">Library Management System</p>
   <div class="login-register">
     <a routerLink="/login">Login</a>
     <a routerLink="/register">Register</a>
+  </div>
+</nav>
+<nav *ngIf="currentUser">
+  <p routerLink="/">Library Management System</p>
+  <div class="logout">
+      <a routerLink="/book-list" *ngIf="currentUser.role==='patron'">Dashboard</a>
+      <a routerLink="/patron-list" *ngIf="currentUser.role==='librarian'">Dashboard</a>
+      <p (click)="logout()" id="logout">Logout</p>
   </div>
 </nav>
 <router-outlet></router-outlet>

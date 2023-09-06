@@ -1,0 +1,21 @@
+.table{
+    text-align: center;
+}
+#action{
+    display: flex;
+    justify-content: space-around;
+}
+button{
+    border: 1px solid rgb(12, 82, 138);
+    border-radius: 30px;
+    width: 40px;
+}
+.even{
+    background-color: rgb(238, 238, 238);
+}
+.odd{
+    background-color:white
+}
+td,th{
+    padding: 1%;
+}

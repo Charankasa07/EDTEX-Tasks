@@ -1,0 +1,12 @@
+.even{
+    background-color: rgb(238, 238, 238);
+}
+.odd{
+    background-color:white
+}
+.table{
+    text-align: center;
+}
+td,th{
+    padding: 1%;
+}

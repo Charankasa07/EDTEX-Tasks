@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     const data = this.registerUsers.filter(
       (user) => user.email === this.user.email
     );
-    if (this.currentUser) {
+    if (!this.currentUser) {
       if (!data.length) {
         this.message = "Mail doesn't exists";
       } 
@@ -50,14 +50,14 @@ export class LoginComponent implements OnInit {
         }
       }
     } else {
-      this.message = "You're already logged in";
+      // this.message = "You're already logged in";
       if (data[0].role === 'librarian') {
         this.cookieService.set('currentUser', JSON.stringify(data[0]),1);
         this.location.go('/patron-list');
         window.location.reload();
       } else {
         this.cookieService.set('currentUser', JSON.stringify(data[0]),1);
-        this.location.go('/book-list');
+        this.location.go('/book-list/view-books');
         window.location.reload();
       }
     }
