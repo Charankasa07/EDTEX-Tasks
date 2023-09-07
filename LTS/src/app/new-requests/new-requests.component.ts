@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,TemplateRef} from '@angular/core';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Leave, UserRegister } from '../User';
 
 @Component({
@@ -10,6 +11,7 @@ export class NewRequestsComponent implements OnInit{
   users : UserRegister[]=[]
   pendingLeaves : Leave[]=[]
   leaves : Leave[]=[]
+  managerMessage : string=''
   ngOnInit(): void {
       const leavesData = localStorage.getItem('leaves');
       if(leavesData){
@@ -22,9 +24,14 @@ export class NewRequestsComponent implements OnInit{
       }
   }
   accept(id:string){
+    let message = prompt("Message for Accepting")
+    if(message){
+      this.managerMessage=message
+    }
     this.leaves.forEach(leave => {
       if(leave.id === id){
         leave.status='accepted'
+        leave.managerReason=this.managerMessage
       }
     })
     localStorage.setItem('leaves',JSON.stringify(this.leaves))
@@ -34,6 +41,7 @@ export class NewRequestsComponent implements OnInit{
       emp.leaves.forEach(leave => {
         if(leave.id === id){
           leave.status='accepted'
+          leave.managerReason=this.managerMessage
         }
       })
       this.users.push(emp)
@@ -43,9 +51,14 @@ export class NewRequestsComponent implements OnInit{
   }
 
   reject(id:string){
+    let message = prompt("Reason for Rejection")
+    if(message){
+      this.managerMessage=message
+    }
     this.leaves.forEach(leave => {
       if(leave.id === id){
         leave.status='rejected'
+        leave.managerReason=this.managerMessage
       }
     })
     localStorage.setItem('leaves',JSON.stringify(this.leaves))
@@ -55,11 +68,12 @@ export class NewRequestsComponent implements OnInit{
       emp.leaves.forEach(leave => {
         if(leave.id === id){
           leave.status='rejected'
+          leave.managerReason=this.managerMessage
         }
       })
       this.users.push(emp)
     })
     localStorage.setItem('users',JSON.stringify(this.users))
-    window.location.reload()
+    // window.location.reload()
   } 
 }

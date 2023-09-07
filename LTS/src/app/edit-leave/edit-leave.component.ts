@@ -18,7 +18,8 @@ export class EditLeaveComponent implements OnInit{
     mobile:'',
     email:'',
     password:'',
-    leaves:[]
+    leaves:[],
+    numberOfLeaves:0,
   }
   leave : Leave = {
     id:'',
@@ -27,7 +28,8 @@ export class EditLeaveComponent implements OnInit{
     startDate:'',
     endDate:'',
     reason:'',
-    status:''
+    status:'',
+    managerReason:''
   }
   ngOnInit(): void {
       this.leaveId = this.route.snapshot.params['id']
@@ -36,7 +38,10 @@ export class EditLeaveComponent implements OnInit{
         this.leaves = JSON.parse(leavesData)
       }
       this.leave = this.leaves.filter(leave => leave.id === this.leaveId)[0]
-      console.log(this.leave);
+      if(this.leave.status!=='pending'){
+        alert("You can't edit your leave as it is already responded")
+        window.location.href = 'http://localhost:4200/employee/track-leaves'
+      }
       
   }
   save(){
@@ -49,7 +54,7 @@ export class EditLeaveComponent implements OnInit{
     }
     this.currentUser.leaves = this.currentUser.leaves.filter(leave => leave.id !== this.leaveId)
     this.currentUser.leaves.push(this.leave)
-    this.cookieService.set('currentUser',JSON.stringify(this.currentUser),1,'/')
+    this.cookieService.set('currentUser',JSON.stringify(this.currentUser),1,'./')
     window.location.href = "http://localhost:4200/employee/track-leaves"
   }
 }

@@ -20,6 +20,7 @@ export class ApplyLeaveComponent implements OnInit {
     mobile: '',
     email: '',
     password: '',
+    numberOfLeaves:0,
   };
   leave: Leave = {
     id: uuid(),
@@ -28,27 +29,35 @@ export class ApplyLeaveComponent implements OnInit {
     startDate: '',
     endDate: '',
     reason: '',
-    status:'pending'
+    status:'pending',
+    managerReason:''
   };
   onApplyLeave() {
-    const user = this.users.filter(
-      (user) => user.email === this.currentUser.email
-    );
-    if (user.length) {
-      this.leave.name = this.currentUser.name
-      this.currentUser.leaves.push(this.leave);
-    }
-    
-    this.cookieService.set('currentUser',JSON.stringify(this.currentUser),1,'/')
-    this.users.forEach(user => {
-      if(user.email === this.currentUser.email){
-        user.leaves.push(this.leave)
+    if(this.currentUser.numberOfLeaves>0){
+      const user = this.users.filter(
+        (user) => user.email === this.currentUser.email
+        );
+        if (user.length) {
+          this.leave.name = this.currentUser.name
+          this.currentUser.leaves.push(this.leave);
+          this.currentUser.numberOfLeaves = this.currentUser.numberOfLeaves-1
+        }
+        
+        this.cookieService.set('currentUser',JSON.stringify(this.currentUser),1,'')
+        this.users.forEach(user => {
+          if(user.email === this.currentUser.email){
+            user.leaves.push(this.leave)
+            user.numberOfLeaves-=1
+          }
+        })
+        localStorage.setItem('users',JSON.stringify(this.users));
+        this.leaves.push(this.leave)
+        localStorage.setItem('leaves',JSON.stringify(this.leaves))
+        window.location.href = 'http://localhost:4200/employee/track-leaves'
       }
-    })
-    localStorage.setItem('users',JSON.stringify(this.users));
-    this.leaves.push(this.leave)
-    localStorage.setItem('leaves',JSON.stringify(this.leaves))
-    window.location.href = 'http://localhost:4200/employee/track-leaves'
+      else{
+        alert("You are out of leaves")
+      }
     
   }
   ngOnInit(): void {

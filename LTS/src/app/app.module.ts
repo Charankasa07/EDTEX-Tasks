@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -15,6 +17,7 @@ import { TrackLeavesComponent } from './track-leaves/track-leaves.component';
 import { EditLeaveComponent } from './edit-leave/edit-leave.component';
 import { NewRequestsComponent } from './new-requests/new-requests.component';
 import { OverviewComponent } from './overview/overview.component';
+import { LeaveHistoryComponent } from './leave-history/leave-history.component';
 
 @NgModule({
   declarations: [
@@ -28,13 +31,17 @@ import { OverviewComponent } from './overview/overview.component';
     TrackLeavesComponent,
     EditLeaveComponent,
     NewRequestsComponent,
-    OverviewComponent
+    OverviewComponent,
+    LeaveHistoryComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    TabsModule.forRoot(),
+    BsDropdownModule.forRoot(),
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

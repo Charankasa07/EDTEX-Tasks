@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { UserRegister } from '../User';
 
+
 @Component({
   selector: 'app-employee-dashboard',
   templateUrl: './employee-dashboard.component.html',
@@ -15,7 +16,8 @@ export class EmployeeDashboardComponent implements OnInit{
     mobile:'',
     email:'',
     password:'',
-    leaves:[]
+    leaves:[],
+    numberOfLeaves:0,
   }
   ngOnInit(): void {
       const currentUserData = this.cookieService.get('currentUser')

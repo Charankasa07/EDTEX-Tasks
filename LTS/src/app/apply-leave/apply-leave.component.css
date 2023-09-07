@@ -13,8 +13,8 @@ form{
     height: 50vh;
     width: 30vw;
     min-width: fit-content;
-    border: 1px solid rgb(12, 82, 138);
-    background-color: rgb(233, 245, 255);
+    border: 1px solid rgb(84, 87, 90);
+    background-color:rgb(243, 243, 243);
     padding: 1% 0%;
     border-radius: 3%;
 }
@@ -26,7 +26,7 @@ select,input{
 #title{
     font-weight: 500;
     font-size: x-large;
-    color: rgb(12, 82, 138);
+    color: rgb(84, 87, 90);
 }
 .error-message{
     color: rgb(174, 1, 1);
@@ -37,4 +37,7 @@ select,input{
 a{
     text-decoration: none;
     color: rgb(12, 82, 138);
+}
+textarea{
+    width: 20vw;
 }

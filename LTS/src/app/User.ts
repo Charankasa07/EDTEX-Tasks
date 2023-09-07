@@ -4,7 +4,8 @@ export interface UserRegister{
     mobile:string,
     email:string,
     password:string,
-    leaves:Leave[]
+    leaves:Leave[],
+    numberOfLeaves:number,
 }
 export interface UserLogin{
     email:string,
@@ -17,5 +18,6 @@ export interface Leave{
     startDate:string,
     endDate:string,
     reason:string,
-    status:string
+    status:string,
+    managerReason:string,
 }

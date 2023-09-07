@@ -16,18 +16,23 @@ export class TrackLeavesComponent implements OnInit {
     email: '',
     password: '',
     leaves: [],
+    numberOfLeaves:0,
   };
   ngOnInit(): void {
     const currentUserData = this.cookieService.get('currentUser');
     if (currentUserData) {
       this.currentUser = JSON.parse(currentUserData);
     }
+    console.log(this.currentUser);
+    
   }
   delete(id: string) {
-    this.currentUser.leaves = this.currentUser.leaves?.filter(
+    this.currentUser.leaves = this.currentUser.leaves.filter(
       (leave) => leave.id !== id
     );
-    this.cookieService.set('currentUser', JSON.stringify(this.currentUser));
+    this.currentUser.numberOfLeaves+=1
+    this.cookieService.set('currentUser', JSON.stringify(this.currentUser),1,'/');
+    
     let users: UserRegister[] = [];
     const usersData = localStorage.getItem('users');
     if (usersData) {
@@ -37,6 +42,7 @@ export class TrackLeavesComponent implements OnInit {
           user.leaves = user.leaves.filter((leave) => {
             leave.id !== id;
           });
+          user.numberOfLeaves+=1
         }
       });
     }
@@ -48,5 +54,6 @@ export class TrackLeavesComponent implements OnInit {
     }
     leaves = leaves.filter(leave => leave.id !== id)
     localStorage.setItem("leaves",JSON.stringify(leaves))
+    // window.location.reload()
   }
 }

@@ -4,6 +4,7 @@ import { ApplyLeaveComponent } from './apply-leave/apply-leave.component';
 import { EditLeaveComponent } from './edit-leave/edit-leave.component';
 import { EmployeeDashboardComponent } from './employee-dashboard/employee-dashboard.component';
 import { HomeComponent } from './home/home.component';
+import { LeaveHistoryComponent } from './leave-history/leave-history.component';
 import { LoginComponent } from './login/login.component';
 import { ManagerDashboardComponent } from './manager-dashboard/manager-dashboard.component';
 import { NewRequestsComponent } from './new-requests/new-requests.component';
@@ -39,6 +40,15 @@ const routes: Routes = [
       {
         path:'edit-leave/:id',
         component:EditLeaveComponent
+      },
+      {
+        path:'leave-history',
+        component:LeaveHistoryComponent
+      },
+      {
+        path:'',
+        redirectTo:'leave-history',
+        pathMatch:'full'
       }
     ]
   },

@@ -29,3 +29,24 @@ p{
     color:aliceblue;
     cursor: pointer;
 }
+#title{
+    font-weight: 500;
+    margin-top: 1%;
+}
+.dropdown-menu{
+    background-color:rgb(12, 82, 138);
+    /* background-color: rgba(12,82,138,0.1); */
+}
+button,button:hover,li{
+    color: aliceblue;
+}
+.dropdown-menu{
+    height: 54px;
+    padding-left: 30%;
+    border: none;
+}
+li>p{
+    color: white;
+}
+
+

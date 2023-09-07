@@ -19,3 +19,9 @@ button{
 td,th{
     padding: 1%;
 }
+.rejected{
+    color: rgb(176, 5, 5);
+}
+.not-rejected{
+    color: rgb(0, 97, 139);
+}

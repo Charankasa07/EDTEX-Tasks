@@ -21,7 +21,11 @@ a{
     place-items:center ;
     border-radius: 3px;
 }
-a:active{
+.active{
     background-color: slategray;
     color: rgb(214, 221, 226);
+}
+p{
+    margin-top: 1%;
+    margin-right: 8%;
 }
