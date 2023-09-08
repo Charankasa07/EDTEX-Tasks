@@ -37,19 +37,30 @@ export class ApplyLeaveComponent implements OnInit {
   };
   message = '';
   displayMessage = false;
+  //function for applying a leave
   onApplyLeave() {
+    //checking whether user has any remaining leaves or not
     if (this.currentUser.numberOfLeaves > 0) {
+      //getting currentUser data from the users array
       const user = this.users.filter(
         (user) => user.email === this.currentUser.email
       );
+       //converting the startDate of the leave to the ISO String format
       const startDate = new Date(this.leave.startDate).toISOString();
+      //comparing whether the startdate is greater than the current date or not
       if (startDate >= new Date().toISOString()) {
+        //converting the endDate of the leave to the ISO String format
         const endDate = new Date(this.leave.endDate).toISOString();
+         //comparing whether the endDate is greater than the startDate or not
         if (endDate >= startDate) {
           if (user.length) {
+            //adding the users name to the leave 
+            //for knowing the name of the employee to the employee 
+            //in the overview of the leaves by employee
             this.leave.name = this.currentUser.name;
-
+            //appending the leave to the currentUser leaves array
             this.currentUser.leaves.push(this.leave);
+            //decrementing the remaining leaves of the user by 1
             this.currentUser.numberOfLeaves =
               this.currentUser.numberOfLeaves - 1;
           }
@@ -60,23 +71,29 @@ export class ApplyLeaveComponent implements OnInit {
             1,
             ''
           );
+          //updating the user leaves in the users array in Local Storage
           this.users.forEach((user) => {
             if (user.email === this.currentUser.email) {
+              //appending the leave to the user leaves
               user.leaves.push(this.leave);
               user.numberOfLeaves -= 1;
             }
           });
           localStorage.setItem('users', JSON.stringify(this.users));
+          //appending the leave to the leaves array in the local storage
           this.leaves.push(this.leave);
+          //setting the leaves into the local storage
           localStorage.setItem('leaves', JSON.stringify(this.leaves));
           window.location.href = 'http://localhost:4200/employee/track-leaves';
         } else {
+          //displayin error message if the endDate is not greater than startDate
           this.message =
             'End Date must be Start Date or greater than Start Date';
           this.displayMessage = true;
           setTimeout(() => (this.displayMessage = false), 2000);
         }
       } else {
+        //displaying error message if the startDate is not greater than the current Date
         this.message = 'Start Date must be from Today or greater';
         this.displayMessage = true;
         setTimeout(() => (this.displayMessage = false), 2000);
@@ -87,10 +104,12 @@ export class ApplyLeaveComponent implements OnInit {
   }
   ngOnInit(): void {
     const usersData = localStorage.getItem('users');
+    //getting the current user data
     if (usersData) {
       this.users = JSON.parse(usersData);
     }
     this.currentUser = JSON.parse(this.cookieService.get('currentUser'));
+    //getting the leaves data from the local storage
     const leavesData = localStorage.getItem('leaves');
     if (leavesData) {
       this.leaves = JSON.parse(leavesData);

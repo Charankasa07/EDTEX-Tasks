@@ -4,15 +4,18 @@ import { Leave } from '../User';
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.component.html',
-  styleUrls: ['./overview.component.css']
+  styleUrls: ['./overview.component.css'],
 })
-export class OverviewComponent implements OnInit{
-  allLeaves: Leave[]=[]
+export class OverviewComponent implements OnInit {
+  allLeaves: Leave[] = [];
   ngOnInit(): void {
-      const leavesData = localStorage.getItem('leaves')
-      if(leavesData){
-        this.allLeaves = JSON.parse(leavesData)
-        this.allLeaves = this.allLeaves.filter(leave => leave.status !== 'pending')
-      }
+    const leavesData = localStorage.getItem('leaves');
+    //retrieving and storing all the leaves data so as to display it to the manager
+    if (leavesData) {
+      this.allLeaves = JSON.parse(leavesData);
+      this.allLeaves = this.allLeaves.filter(
+        (leave) => leave.status !== 'pending'
+      );
+    }
   }
 }

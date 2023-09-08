@@ -22,20 +22,28 @@ export class RegistrationComponent implements OnInit {
     numberOfLeaves: 5,
   };
   onRegister() {
+    //filtering the users with given email inorder to avoid redundant data
     const userData = this.users.filter(
       (user) => user.email === this.user.email
     );
+    //checking whether any user is already existed with the given email
     if (userData.length) {
+      //displaying error message
       this.message = 'User already exists';
       this.displayMessage = true;
       setTimeout(() => (this.displayMessage = false), 2000);
     } else {
+      //if no user found with given mail
+      //storing the user data into the local storage and update it
       this.users.push(this.user);
       localStorage.setItem('users', JSON.stringify(this.users));
       this.cookieService.set('currentUser', JSON.stringify(this.user), 1, '');
+      //if user is employee redirect them to employee dashboard
       if (this.user.role === 'employee') {
         window.location.href = 'http://localhost:4200/employee';
-      } else {
+      }
+      //if user is manager redirect them to manager dashboard
+      else {
         window.location.href = 'http://localhost:4200/manager';
       }
     }
@@ -48,6 +56,8 @@ export class RegistrationComponent implements OnInit {
     const user = this.cookieService.get('currentUser');
     if (user) {
       let userData: UserRegister = JSON.parse(user);
+      //if there is already user data in the cookie storage
+      //then redirect them to respective dashboards
       if (userData.role === 'employee') {
         window.location.href = 'http://localhost:4200/employee';
       } else {
