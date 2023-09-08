@@ -67,6 +67,7 @@ nav{
     padding: 0% 1%;
     height: 15vh;
     color: aliceblue;
+    font-family:'Times New Roman', Times, serif;
 }
 .dropdown-menu{
     background-color:rgb(12, 82, 138);

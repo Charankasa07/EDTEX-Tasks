@@ -1,6 +1,6 @@
 <div class="container">
     <form #managerForm="ngForm" class="form" (ngSubmit)="onSubmit()">
         <input type="number" class="form-control" name="numberOfLeaves" id="numberOfLeaves" required [(ngModel)]="numberOfLeaves" placeholder="Number of Leaves">
-        <button type="submit" [disabled]="managerForm.invalid" class="btn btn-secondary">Submit</button>
+        <button type="submit" [disabled]="managerForm.invalid" class="btn btn-secondary">Update</button>
     </form>
 </div>

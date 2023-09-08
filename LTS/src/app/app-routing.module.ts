@@ -16,15 +16,18 @@ import { TrackLeavesComponent } from './track-leaves/track-leaves.component';
 const routes: Routes = [
   {
     path:'',
-    component:HomeComponent
+    component:HomeComponent,
+    title:"Leave Tracking System"
   },
   {
     path:'login',
-    component:LoginComponent
+    component:LoginComponent,
+    title:"Login"
   },
   {
     path:'register',
-    component:RegistrationComponent
+    component:RegistrationComponent,
+    title:"Register"
   },
   {
     path:'employee',
@@ -32,19 +35,23 @@ const routes: Routes = [
     children:[
       {
         path:'apply-leave',
-        component:ApplyLeaveComponent
+        component:ApplyLeaveComponent,
+        title:"Apply Leave"
       },
       {
         path:'track-leaves',
-        component:TrackLeavesComponent
+        component:TrackLeavesComponent,
+        title:"Track Leaves"
       },
       {
         path:'edit-leave/:id',
-        component:EditLeaveComponent
+        component:EditLeaveComponent,
+        title:"Edit Leave"
       },
       {
         path:'leave-history',
-        component:LeaveHistoryComponent
+        component:LeaveHistoryComponent,
+        title:"Leave History"
       },
       {
         path:'',
@@ -59,15 +66,18 @@ const routes: Routes = [
     children:[
       {
         path:'new-requests',
-        component:NewRequestsComponent
+        component:NewRequestsComponent,
+        title:"New Requests"
       },
       {
         path:'overview',
-        component:OverviewComponent
+        component:OverviewComponent,
+        title:"Overview"
       },
       {
         path:'settings',
-        component:SettingsComponent
+        component:SettingsComponent,
+        title:"Settings"
       }
     ]
   }
