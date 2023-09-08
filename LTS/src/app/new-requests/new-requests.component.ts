@@ -29,19 +29,18 @@ export class NewRequestsComponent implements OnInit{
     let message = prompt("Message for Accepting")
     if(message){
       this.managerMessage=message
-    }
-    this.leaves.forEach(leave => {
-      if(leave.id === id){
-        leave.status='accepted'
-        leave.managerReason=this.managerMessage
-      }
-    })
-    localStorage.setItem('leaves',JSON.stringify(this.leaves))
-    let emps : UserRegister[] = this.users.filter(user => user.role==='employee')
-    this.users = this.users.filter(user => user.role!=='employee')
-    emps.forEach(emp=>{
-      emp.leaves.forEach(leave => {
+      this.leaves.forEach(leave => {
         if(leave.id === id){
+          leave.status='accepted'
+          leave.managerReason=this.managerMessage
+        }
+      })
+      localStorage.setItem('leaves',JSON.stringify(this.leaves))
+      let emps : UserRegister[] = this.users.filter(user => user.role==='employee')
+      this.users = this.users.filter(user => user.role!=='employee')
+      emps.forEach(emp=>{
+        emp.leaves.forEach(leave => {
+          if(leave.id === id){
           leave.status='accepted'
           leave.managerReason=this.managerMessage
         }
@@ -51,31 +50,32 @@ export class NewRequestsComponent implements OnInit{
     localStorage.setItem('users',JSON.stringify(this.users))
     window.location.reload()
   }
+  }
 
   reject(id:string){
     let message = prompt("Reason for Rejection")
     if(message){
       this.managerMessage=message
-    }
-    this.leaves.forEach(leave => {
-      if(leave.id === id){
-        leave.status='rejected'
-        leave.managerReason=this.managerMessage
-      }
-    })
-    localStorage.setItem('leaves',JSON.stringify(this.leaves))
-    let emps : UserRegister[] = this.users.filter(user => user.role==='employee')
-    this.users = this.users.filter(user => user.role!=='employee')
-    emps.forEach(emp=>{
-      emp.leaves.forEach(leave => {
+      this.leaves.forEach(leave => {
         if(leave.id === id){
           leave.status='rejected'
           leave.managerReason=this.managerMessage
         }
       })
-      this.users.push(emp)
-    })
-    localStorage.setItem('users',JSON.stringify(this.users))
-    // window.location.reload()
+      localStorage.setItem('leaves',JSON.stringify(this.leaves))
+      let emps : UserRegister[] = this.users.filter(user => user.role==='employee')
+      this.users = this.users.filter(user => user.role!=='employee')
+      emps.forEach(emp=>{
+        emp.leaves.forEach(leave => {
+          if(leave.id === id){
+            leave.status='rejected'
+            leave.managerReason=this.managerMessage
+          }
+        })
+        this.users.push(emp)
+      })
+      localStorage.setItem('users',JSON.stringify(this.users))
+      window.location.reload()
+    }
   } 
 }

@@ -28,7 +28,7 @@ export class RegistrationComponent implements OnInit {
     if (userData.length) {
       this.message = 'User already exists';
       this.displayMessage = true;
-      setTimeout(() => (this.displayMessage = false), 2500);
+      setTimeout(() => (this.displayMessage = false), 2000);
     } else {
       this.users.push(this.user);
       localStorage.setItem('users', JSON.stringify(this.users));

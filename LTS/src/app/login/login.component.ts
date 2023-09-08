@@ -23,13 +23,14 @@ export class LoginComponent implements OnInit {
     if (!userData.length) {
       this.message = "User doesn't exists";
       this.displayMessage = true;
-      setTimeout(() => (this.displayMessage = false), 2500);
+      setTimeout(() => (this.displayMessage = false), 2000);
     } else {
       if (userData[0].password !== this.currentUser.password) {
         this.message = 'Incorrect Password';
         this.displayMessage = true;
-        setTimeout(() => (this.displayMessage = false), 2500);
+        setTimeout(() => (this.displayMessage = false), 2000);
       } else {
+        this.cookieService.delete('currentUser');
         this.cookieService.set(
           'currentUser',
           JSON.stringify(userData[0]),
@@ -49,8 +50,6 @@ export class LoginComponent implements OnInit {
     if (usersData) {
       this.users = JSON.parse(usersData);
     }
-    console.log(this.users);
-    
     const user = this.cookieService.get('currentUser');
     if (user) {
       let userData: UserRegister = JSON.parse(user);

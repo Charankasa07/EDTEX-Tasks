@@ -26,14 +26,14 @@ export class TrackLeavesComponent implements OnInit {
     if (currentUserData) {
       this.currentUser = JSON.parse(currentUserData);
     }
-    console.log(this.currentUser);
-    
+    console.log(this.currentUser)
   }
   delete(id: string) {
     this.currentUser.leaves = this.currentUser.leaves.filter(
       (leave) => leave.id !== id
     );
     this.currentUser.numberOfLeaves+=1
+    this.cookieService.delete('currentUser')
     this.cookieService.set('currentUser', JSON.stringify(this.currentUser),1,'/');
     
     let users: UserRegister[] = [];
@@ -50,13 +50,6 @@ export class TrackLeavesComponent implements OnInit {
       });
     }
     localStorage.setItem('users',JSON.stringify(users))
-    let leaves : Leave[]=[];
-    const leavesData = localStorage.getItem('leaves')
-    if(leavesData){
-      leaves = JSON.parse(leavesData)
-    }
-    leaves = leaves.filter(leave => leave.id !== id)
-    localStorage.setItem("leaves",JSON.stringify(leaves))
     window.location.reload()
   }
 }

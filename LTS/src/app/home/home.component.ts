@@ -19,6 +19,8 @@ export class HomeComponent implements OnInit{
     numberOfLeaves:0
   }
   ngOnInit(): void {
+    console.log(new Date());
+    
       let currentUser = this.cookieService.get('currentUser')
       if(currentUser){
         this.currentUser = JSON.parse(currentUser)
