@@ -49,6 +49,8 @@ export class LoginComponent implements OnInit {
     if (usersData) {
       this.users = JSON.parse(usersData);
     }
+    console.log(this.users);
+    
     const user = this.cookieService.get('currentUser');
     if (user) {
       let userData: UserRegister = JSON.parse(user);

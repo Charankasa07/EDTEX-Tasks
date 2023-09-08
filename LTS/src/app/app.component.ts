@@ -26,11 +26,9 @@ export class AppComponent implements OnInit{
       if(currentUserData){
         this.currentUser = JSON.parse(currentUserData)
       }
-      console.log(this.currentUser);
-      
   }
   logout(){
     this.cookieService.delete('currentUser');
-    window.location.href = 'http://localhost:4200/login'
+    window.location.href = 'http://localhost:4200/'
   }
 }

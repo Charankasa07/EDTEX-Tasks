@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit{
           window.location.href='http://localhost:4200/employee'
         }
         else{
-          window.location.href='http://locahost:4200/manager'
+          window.location.href='http://localhost:4200/manager'
         }
       }
       

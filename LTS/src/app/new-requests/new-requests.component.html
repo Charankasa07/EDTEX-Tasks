@@ -1,5 +1,5 @@
 <div class="container">
-  <p *ngIf="!pendingLeaves.length">No Leaves</p>
+  <p *ngIf="!pendingLeaves.length" id="message">No Data</p>
   <table *ngIf="pendingLeaves.length" class="table">
     <tr>
       <th>Employee Name</th>
@@ -19,8 +19,8 @@
       <td>{{ leave.endDate | date : "medium" }}</td>
       <td id="reason">{{ leave.reason ? leave.reason : "-" }}</td>
       <td>
-        <button (click)="accept(leave.id)">✔</button>
-        <button (click)="reject(leave.id)">✘</button>
+        <button (click)="accept(leave.id)" ><fa-icon [icon]="acceptIcon" id="accept"></fa-icon></button>
+        <button (click)="reject(leave.id)" ><fa-icon [icon]="rejectIcon" id="reject"></fa-icon></button>
       </td>
     </tr>
   </table>

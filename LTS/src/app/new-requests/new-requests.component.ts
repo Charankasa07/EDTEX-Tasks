@@ -1,5 +1,5 @@
-import { Component, OnInit ,TemplateRef} from '@angular/core';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { Component, OnInit} from '@angular/core';
+import { faCheck,faXmark} from '@fortawesome/free-solid-svg-icons';
 import { Leave, UserRegister } from '../User';
 
 @Component({
@@ -12,6 +12,8 @@ export class NewRequestsComponent implements OnInit{
   pendingLeaves : Leave[]=[]
   leaves : Leave[]=[]
   managerMessage : string=''
+  acceptIcon = faCheck
+  rejectIcon = faXmark
   ngOnInit(): void {
       const leavesData = localStorage.getItem('leaves');
       if(leavesData){
