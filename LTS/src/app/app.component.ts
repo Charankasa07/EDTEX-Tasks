@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { UserRegister } from './User';
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { faUserCircle} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',

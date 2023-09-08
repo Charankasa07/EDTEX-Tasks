@@ -1,23 +1,7 @@
 <div class="container">
-  <!-- <p>Leave History</p> -->
-  <!-- <table class="table">
-    <tr class="odd">
-      <th>Applied Leaves</th>
-      <th>Accepted Leaves</th>
-      <th>Rejected Leaves</th>
-      <th>Pending Leaves</th>
-      <th>Remaining Leaves</th>
-    </tr>
-    <tr class="even">
-      <td>{{ currentUser.leaves.length }}</td>
-      <td>{{ AcceptedLeaves.length }}</td>
-      <td>{{ RejectedLeaves.length }}</td>
-      <td>{{ PendingLeaves.length }}</td>
-      <td>{{ currentUser.numberOfLeaves }}</td>
-    </tr>
-  </table> -->
   <p id="welcome">Welcome {{currentUser.name | titlecase}}</p>
   <div class="details">
+    <p style="font-weight:500 ;">Total Number of Leaves for Employee : 5</p>
     <p>Applied Leaves : {{currentUser.leaves.length}}</p>
     <p>Accepted Leaves : {{AcceptedLeaves.length}}</p>
     <p>Rejected Leaves : {{RejectedLeaves.length}}</p>

@@ -48,5 +48,7 @@ button,button:hover,li{
 li>p{
     color: white;
 }
-
+button{
+    font-size: 18px;
+}
 

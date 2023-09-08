@@ -14,7 +14,7 @@ form{
     width: 25vw;
     min-width: fit-content;
     border: 1px solid rgb(84, 87, 90);
-    background-color:rgb(243, 243, 243);
+    background-color:rgb(241, 245, 251);
     padding: 1% 0%;
     border-radius: 3%;
 }
@@ -26,7 +26,7 @@ input{
 #title{
     font-weight: 500;
     font-size: x-large;
-    color: rgb(84, 87, 90);
+    color: rgb(0, 0, 0);
 }
 .error-message{
     color: rgb(174, 1, 1);

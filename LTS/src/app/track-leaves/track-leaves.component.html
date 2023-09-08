@@ -12,9 +12,9 @@
             <td>{{leave.type |titlecase}}</td>
             <td>{{leave.startDate | date:'medium'}}</td>
             <td>{{leave.endDate | date:'medium'}}</td>
-            <td [ngClass]="leave.status ==='rejected' ? 'rejected' : 'not-rejected'">{{(leave.status | titlecase)}}</td>
+            <td [ngClass]="leave.status !=='pending'? (leave.status === 'accepted' ? 'accepted' : 'rejected') : 'pending'">{{(leave.status | titlecase)}}</td>
             <td>{{ leave.status !== 'pending'?(leave.managerReason ? leave.managerReason :'Reason not specified') : "Not yet responded"}}</td>
-            <td id="action"><a [routerLink]="['../edit-leave',leave.id]">✎</a><button (click)="delete(leave.id)">🗑️</button></td>
+            <td id="action"><a [routerLink]="['../edit-leave',leave.id]" *ngIf="leave.status==='pending'"><fa-icon [icon]="editIcon"></fa-icon></a><button (click)="delete(leave.id)"><fa-icon [icon]="deleteIcon"></fa-icon></button></td>
         </tr>
     </table>
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { UserRegister ,Leave} from '../User';
+import {faPenToSquare,faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-track-leaves',
@@ -18,6 +19,8 @@ export class TrackLeavesComponent implements OnInit {
     leaves: [],
     numberOfLeaves:0,
   };
+  deleteIcon = faTrashCan
+  editIcon = faPenToSquare
   ngOnInit(): void {
     const currentUserData = this.cookieService.get('currentUser');
     if (currentUserData) {
@@ -54,6 +57,6 @@ export class TrackLeavesComponent implements OnInit {
     }
     leaves = leaves.filter(leave => leave.id !== id)
     localStorage.setItem("leaves",JSON.stringify(leaves))
-    // window.location.reload()
+    window.location.reload()
   }
 }

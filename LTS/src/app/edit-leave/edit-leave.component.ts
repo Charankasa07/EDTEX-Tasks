@@ -38,10 +38,6 @@ export class EditLeaveComponent implements OnInit{
         this.leaves = JSON.parse(leavesData)
       }
       this.leave = this.leaves.filter(leave => leave.id === this.leaveId)[0]
-      if(this.leave.status!=='pending'){
-        alert("You can't edit your leave as it is already responded")
-        window.location.href = 'http://localhost:4200/employee/track-leaves'
-      }
       
   }
   save(){
