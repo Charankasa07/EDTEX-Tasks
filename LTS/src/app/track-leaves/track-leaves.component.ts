@@ -34,8 +34,6 @@ export class TrackLeavesComponent implements OnInit {
     this.currentUser.leaves = this.currentUser.leaves.filter(
       (leave) => leave.id !== id
     );
-    //increasing the user's leaves assuming that leaves get increased when a leavae got deleted
-    this.currentUser.numberOfLeaves += 1;
     this.cookieService.delete('currentUser');
     this.cookieService.set(
       'currentUser',
@@ -54,7 +52,6 @@ export class TrackLeavesComponent implements OnInit {
           user.leaves = user.leaves.filter((leave) => {
             leave.id !== id;
           });
-          user.numberOfLeaves += 1;
         }
       });
     }

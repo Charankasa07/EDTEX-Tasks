@@ -28,9 +28,9 @@ export class AppComponent implements OnInit {
       this.currentUser = JSON.parse(currentUserData);
     }
   }
-  logout() {
+  async logout() {
     //removing user from cookie storage as he/she is logged out
-    this.cookieService.delete('currentUser');
+    await this.cookieService.delete('currentUser');
     window.location.href = 'http://localhost:4200/';
   }
 }

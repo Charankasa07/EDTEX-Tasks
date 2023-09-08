@@ -18,6 +18,7 @@ import { EditLeaveComponent } from './edit-leave/edit-leave.component';
 import { NewRequestsComponent } from './new-requests/new-requests.component';
 import { OverviewComponent } from './overview/overview.component';
 import { LeaveHistoryComponent } from './leave-history/leave-history.component';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { LeaveHistoryComponent } from './leave-history/leave-history.component';
     EditLeaveComponent,
     NewRequestsComponent,
     OverviewComponent,
-    LeaveHistoryComponent
+    LeaveHistoryComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

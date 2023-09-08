@@ -10,6 +10,7 @@ import { ManagerDashboardComponent } from './manager-dashboard/manager-dashboard
 import { NewRequestsComponent } from './new-requests/new-requests.component';
 import { OverviewComponent } from './overview/overview.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { SettingsComponent } from './settings/settings.component';
 import { TrackLeavesComponent } from './track-leaves/track-leaves.component';
 
 const routes: Routes = [
@@ -63,6 +64,10 @@ const routes: Routes = [
       {
         path:'overview',
         component:OverviewComponent
+      },
+      {
+        path:'settings',
+        component:SettingsComponent
       }
     ]
   }
