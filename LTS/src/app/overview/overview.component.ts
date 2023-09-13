@@ -17,5 +17,13 @@ export class OverviewComponent implements OnInit {
         (leave) => leave.status !== 'pending'
       );
     }
+    const currentUserData = localStorage.getItem('currentUser')
+    if(currentUserData){
+      console.log("hi");
+    }
+    else{
+      window.location.href='http://localhost:4200/login'
+    }
+    
   }
 }

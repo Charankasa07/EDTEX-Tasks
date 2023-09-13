@@ -7,5 +7,4 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./manager-dashboard.component.css'],
 })
 export class ManagerDashboardComponent {
-  constructor(private cookieService: CookieService) {}
 }

@@ -78,6 +78,11 @@ const routes: Routes = [
         path:'settings',
         component:SettingsComponent,
         title:"Settings"
+      },
+      {
+        path:'',
+        redirectTo:'new-requests',
+        pathMatch:'full'
       }
     ]
   }

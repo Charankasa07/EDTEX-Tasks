@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
 import { UserLogin, UserRegister } from '../User';
 
 @Component({
@@ -8,7 +7,6 @@ import { UserLogin, UserRegister } from '../User';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private cookieService: CookieService) {}
   users: UserRegister[] = [];
   currentUser: UserLogin = {
     email: '',
@@ -37,13 +35,7 @@ export class LoginComponent implements OnInit {
         this.displayMessage = true;
         setTimeout(() => (this.displayMessage = false), 2000);
       } else {
-        this.cookieService.delete('currentUser');
-        this.cookieService.set(
-          'currentUser',
-          JSON.stringify(userData[0]),
-          1,
-          '/'
-        );
+        localStorage.setItem('currentUser',JSON.stringify(userData[0]))
         //redirecting the user based on the user role
         if (userData[0].role === 'employee') {
           window.location.href = 'http://localhost:4200/employee';
@@ -58,7 +50,7 @@ export class LoginComponent implements OnInit {
     if (usersData) {
       this.users = JSON.parse(usersData);
     }
-    const user = this.cookieService.get('currentUser');
+    const user = localStorage.getItem('currentUser');
     if (user) {
       let userData: UserRegister = JSON.parse(user);
       //if there is already user data in the cookie storage

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
 import { Leave, UserRegister } from '../User';
 
 @Component({
@@ -8,7 +7,6 @@ import { Leave, UserRegister } from '../User';
   styleUrls: ['./leave-history.component.css'],
 })
 export class LeaveHistoryComponent implements OnInit {
-  constructor(private cookieService: CookieService) {}
   currentUser: UserRegister = {
     leaves: [],
     role: '',
@@ -22,7 +20,12 @@ export class LeaveHistoryComponent implements OnInit {
   RejectedLeaves: Leave[] = [];
   PendingLeaves: Leave[] = [];
   ngOnInit(): void {
-    this.currentUser = JSON.parse(this.cookieService.get('currentUser'));
+    const currentUserData = localStorage.getItem('currentUser');
+    if(currentUserData){
+      this.currentUser = JSON.parse(currentUserData)
+    }else{
+      window.location.href='http://localhost:4200/login'
+    }
     //filtering the leaves of the currentUser based on their status
     //so as to represent the number of leaves in each category
     this.AcceptedLeaves = this.currentUser.leaves.filter(

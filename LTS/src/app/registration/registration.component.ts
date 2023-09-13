@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
 import { UserRegister } from '../User';
 
 @Component({
@@ -9,9 +8,9 @@ import { UserRegister } from '../User';
 })
 export class RegistrationComponent implements OnInit {
   displayMessage: boolean = false;
-  constructor(private cookieService: CookieService) {}
   message = '';
   users: UserRegister[] = [];
+  numberOfLeaves = 0;
   user: UserRegister = {
     role: 'employee',
     name: '',
@@ -19,7 +18,7 @@ export class RegistrationComponent implements OnInit {
     email: '',
     password: '',
     leaves: [],
-    numberOfLeaves: 5,
+    numberOfLeaves: this.numberOfLeaves,
   };
   onRegister() {
     //filtering the users with given email inorder to avoid redundant data
@@ -37,7 +36,7 @@ export class RegistrationComponent implements OnInit {
       //storing the user data into the local storage and update it
       this.users.push(this.user);
       localStorage.setItem('users', JSON.stringify(this.users));
-      this.cookieService.set('currentUser', JSON.stringify(this.user), 1, '');
+      localStorage.setItem('currentUser',JSON.stringify(this.user));
       //if user is employee redirect them to employee dashboard
       if (this.user.role === 'employee') {
         window.location.href = 'http://localhost:4200/employee';
@@ -53,7 +52,7 @@ export class RegistrationComponent implements OnInit {
     if (usersData) {
       this.users = JSON.parse(usersData);
     }
-    const user = this.cookieService.get('currentUser');
+    const user = localStorage.getItem('currentUser');
     if (user) {
       let userData: UserRegister = JSON.parse(user);
       //if there is already user data in the cookie storage
@@ -63,6 +62,10 @@ export class RegistrationComponent implements OnInit {
       } else {
         window.location.href = 'http://localhost:4200/manager';
       }
+    }
+    const numberOfLeavesData = localStorage.getItem('numberOfLeaves');
+    if(numberOfLeavesData){
+      this.numberOfLeaves = JSON.parse(numberOfLeavesData)
     }
   }
 }

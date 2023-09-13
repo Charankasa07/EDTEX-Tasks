@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
 import { v4 as uuid } from 'uuid';
 import { Location } from '@angular/common';
 import { Leave, UserRegister } from '../User';
@@ -11,7 +10,6 @@ import { Leave, UserRegister } from '../User';
 })
 export class ApplyLeaveComponent implements OnInit {
   constructor(
-    private cookieService: CookieService,
     private location: Location
   ) {}
   leaves: Leave[] = [];
@@ -61,22 +59,23 @@ export class ApplyLeaveComponent implements OnInit {
             //appending the leave to the currentUser leaves array
             this.currentUser.leaves.push(this.leave);
             //decrementing the remaining leaves of the user by 1
-            this.currentUser.numberOfLeaves =
-              this.currentUser.numberOfLeaves - 1;
+            // this.currentUser.numberOfLeaves =
+            //   this.currentUser.numberOfLeaves - 1;
           }
-          this.cookieService.delete('currentUser');
-          this.cookieService.set(
-            'currentUser',
-            JSON.stringify(this.currentUser),
-            1,
-            ''
-          );
+          // this.cookieService.delete('currentUser');
+          // this.cookieService.set(
+          //   'currentUser',
+          //   JSON.stringify(this.currentUser),
+          //   1,
+          //   ''
+          // );
+          localStorage.setItem('currentUser',JSON.stringify(this.currentUser))
           //updating the user leaves in the users array in Local Storage
           this.users.forEach((user) => {
             if (user.email === this.currentUser.email) {
               //appending the leave to the user leaves
               user.leaves.push(this.leave);
-              user.numberOfLeaves -= 1;
+              // user.numberOfLeaves -= 1;
             }
           });
           localStorage.setItem('users', JSON.stringify(this.users));
@@ -108,7 +107,12 @@ export class ApplyLeaveComponent implements OnInit {
     if (usersData) {
       this.users = JSON.parse(usersData);
     }
-    this.currentUser = JSON.parse(this.cookieService.get('currentUser'));
+    const currentUserData = localStorage.getItem('currentUser');
+    if(currentUserData){
+      this.currentUser = JSON.parse(currentUserData)
+    }else{
+      window.location.href='http://localhost:4200/login'
+    }
     //getting the leaves data from the local storage
     const leavesData = localStorage.getItem('leaves');
     if (leavesData) {

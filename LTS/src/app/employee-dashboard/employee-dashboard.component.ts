@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
 import { UserRegister } from '../User';
 
 @Component({
@@ -8,7 +7,6 @@ import { UserRegister } from '../User';
   styleUrls: ['./employee-dashboard.component.css'],
 })
 export class EmployeeDashboardComponent implements OnInit {
-  constructor(private cookieService: CookieService) {}
   currentUser: UserRegister = {
     role: '',
     name: '',
@@ -19,10 +17,12 @@ export class EmployeeDashboardComponent implements OnInit {
     numberOfLeaves: 0,
   };
   ngOnInit(): void {
-    const currentUserData = this.cookieService.get('currentUser');
+    const currentUserData = localStorage.getItem('currentUser');
     if (currentUserData) {
       //getting the data from the cookie storage
       this.currentUser = JSON.parse(currentUserData);
+    }else{
+      window.location.href='http://localhost:4200/login'
     }
   }
 }

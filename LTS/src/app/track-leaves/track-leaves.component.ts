@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
 import { UserRegister, Leave } from '../User';
 import { faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
@@ -9,7 +8,6 @@ import { faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./track-leaves.component.css'],
 })
 export class TrackLeavesComponent implements OnInit {
-  constructor(private cookieService: CookieService) {}
   currentUser: UserRegister = {
     role: '',
     name: '',
@@ -22,11 +20,12 @@ export class TrackLeavesComponent implements OnInit {
   deleteIcon = faTrashCan;
   editIcon = faPenToSquare;
   ngOnInit(): void {
-    const currentUserData = this.cookieService.get('currentUser');
+    const currentUserData = localStorage.getItem('currentUser');
     if (currentUserData) {
       this.currentUser = JSON.parse(currentUserData);
+    }else{
+      window.location.href='http://localhost:4200/login'
     }
-    console.log(this.currentUser);
   }
   delete(id: string) {
     //filtering out the leaves which are other than deleted leave
@@ -34,13 +33,7 @@ export class TrackLeavesComponent implements OnInit {
     this.currentUser.leaves = this.currentUser.leaves.filter(
       (leave) => leave.id !== id
     );
-    this.cookieService.delete('currentUser');
-    this.cookieService.set(
-      'currentUser',
-      JSON.stringify(this.currentUser),
-      1,
-      '/'
-    );
+    localStorage.setItem('currentUser',JSON.stringify(this.currentUser),);
 
     let users: UserRegister[] = [];
     const usersData = localStorage.getItem('users');

@@ -8,6 +8,22 @@ import { Leave, UserRegister } from '../User';
   styleUrls: ['./new-requests.component.css'],
 })
 export class NewRequestsComponent implements OnInit {
+  isVisible = false;
+
+  showModal(): void {
+    this.isVisible = true;
+  }
+
+  handleOk(): void {
+    console.log('Button ok clicked!');
+    this.isVisible = false;
+  }
+
+  handleCancel(): void {
+    console.log('Button cancel clicked!');
+    this.isVisible = false;
+  }
+  
   users: UserRegister[] = [];
   pendingLeaves: Leave[] = [];
   leaves: Leave[] = [];
@@ -26,6 +42,13 @@ export class NewRequestsComponent implements OnInit {
     const usersData = localStorage.getItem('users');
     if (usersData) {
       this.users = JSON.parse(usersData);
+    }
+    const currentUserData = localStorage.getItem('currentUser')
+    if(currentUserData){
+      console.log("hi");
+    }
+    else{
+      window.location.href='http://localhost:4200/login'
     }
   }
   //function for accepting the leave based on the leave id
@@ -57,6 +80,7 @@ export class NewRequestsComponent implements OnInit {
         if (leave.id === id) {
           leave.status = 'accepted';
           leave.managerReason = this.managerMessage;
+          emp.numberOfLeaves-=1
         }
       });
       //appending the employees array to the users array

@@ -19,6 +19,17 @@ import { NewRequestsComponent } from './new-requests/new-requests.component';
 import { OverviewComponent } from './overview/overview.component';
 import { LeaveHistoryComponent } from './leave-history/leave-history.component';
 import { SettingsComponent } from './settings/settings.component';
+import { registerLocaleData } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { en_US } from 'ng-zorro-antd/i18n';
+import en from '@angular/common/locales/en';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+
+registerLocaleData(en);
+
 
 @NgModule({
   declarations: [
@@ -43,9 +54,15 @@ import { SettingsComponent } from './settings/settings.component';
     BrowserAnimationsModule,
     TabsModule.forRoot(),
     BsDropdownModule.forRoot(),
-    FontAwesomeModule
+    FontAwesomeModule,
+    HttpClientModule,
+    NzSpinModule,
+    NzModalModule,
+    NzButtonModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [
+    { provide: NZ_I18N, useValue: en_US }
+  ]
 })
 export class AppModule { }

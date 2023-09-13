@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
 import { UserRegister } from '../User';
 
 @Component({
@@ -8,7 +7,23 @@ import { UserRegister } from '../User';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private cookieService: CookieService) {}
+  isVisible = false;
+
+  constructor() {}
+
+  showModal(): void {
+    this.isVisible = true;
+  }
+
+  handleOk(): void {
+    console.log('Button ok clicked!');
+    this.isVisible = false;
+  }
+
+  handleCancel(): void {
+    console.log('Button cancel clicked!');
+    this.isVisible = false;
+  }
   currentUser: UserRegister = {
     role: '',
     name: '',
@@ -19,7 +34,7 @@ export class HomeComponent implements OnInit {
     numberOfLeaves: 0,
   };
   ngOnInit(): void {
-    let currentUser = this.cookieService.get('currentUser');
+    let currentUser = localStorage.getItem('currentUser');
     if (currentUser) {
       this.currentUser = JSON.parse(currentUser);
       //if there is already user data in the cookie storage

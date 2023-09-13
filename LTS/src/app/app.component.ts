@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
 import { UserRegister } from './User';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
@@ -9,7 +8,6 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  constructor(private cookieService: CookieService) {}
   title = 'LTS';
   userIcon = faUserCircle;
   currentUser: UserRegister = {
@@ -23,14 +21,14 @@ export class AppComponent implements OnInit {
   };
   ngOnInit(): void {
     //retrieving current user data so as to display the name of user on the nav bar
-    const currentUserData = this.cookieService.get('currentUser');
+    const currentUserData = localStorage.getItem('currentUser');
     if (currentUserData) {
       this.currentUser = JSON.parse(currentUserData);
     }
   }
   async logout() {
     //removing user from cookie storage as he/she is logged out
-    await this.cookieService.delete('currentUser');
+    localStorage.removeItem('currentUser')
     window.location.href = 'http://localhost:4200/';
   }
 }

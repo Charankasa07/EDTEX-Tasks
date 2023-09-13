@@ -41,7 +41,7 @@
           [routerLink]="['../edit-leave', leave.id]"
           *ngIf="leave.status === 'pending'"
           ><fa-icon [icon]="editIcon" id="edit"></fa-icon></a>
-          <button (click)="delete(leave.id)">
+          <button (click)="delete(leave.id)" *ngIf="leave.status === 'pending'">
           <fa-icon [icon]="deleteIcon" id="delete"></fa-icon>
         </button>
       </td>

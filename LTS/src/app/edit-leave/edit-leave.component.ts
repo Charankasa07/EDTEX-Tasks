@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, TitleStrategy } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 import { Leave, UserRegister } from '../User';
 
 @Component({
@@ -10,8 +9,7 @@ import { Leave, UserRegister } from '../User';
 })
 export class EditLeaveComponent implements OnInit {
   constructor(
-    private route: ActivatedRoute,
-    private cookieService: CookieService
+    private route: ActivatedRoute
   ) {}
   leaves: Leave[] = [];
   leaveId = '';
@@ -46,10 +44,12 @@ export class EditLeaveComponent implements OnInit {
     }
     //filtering the required leave that has to be edited from the overall leaves
     this.leave = this.leaves.filter((leave) => leave.id === this.leaveId)[0];
-    const currentUserData = this.cookieService.get('currentUser');
+    const currentUserData = localStorage.getItem('currentUser');
     //getting the current user data
     if (currentUserData) {
       this.currentUser = JSON.parse(currentUserData);
+    }else{
+      window.location.href='http://localhost:4200/login'
     }
   }
   //function for saving the changes
@@ -74,13 +74,15 @@ export class EditLeaveComponent implements OnInit {
         );
         //appending the edited leave to the currentUser leaves array
         this.currentUser.leaves.push(this.leave);
-        this.cookieService.delete('currentUser');
-        this.cookieService.set(
-          'currentUser',
-          JSON.stringify(this.currentUser),
-          1,
-          './'
-        );
+        localStorage.setItem('currentUser',JSON.stringify(this.currentUser))
+        // // this.cookieService.delete('currentUser');
+        // this.cookieService.set(
+        //   'currentUser',
+        //   JSON.stringify(this.currentUser),
+        //   1,
+        //   './'
+        // );
+
         window.location.href = 'http://localhost:4200/employee/track-leaves';
       } else {
         //displayin error message if the endDate is not greater than startDate
