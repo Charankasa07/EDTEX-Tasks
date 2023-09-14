@@ -9,13 +9,22 @@ import { Leave, UserRegister } from '../User';
 })
 export class NewRequestsComponent implements OnInit {
   isVisible = false;
+  flag : boolean = true;
+  id : string = ''
 
-  showModal(): void {
+  showModal(flag : boolean , id : string): void {
     this.isVisible = true;
+    this.flag = flag
+    this.id = id
   }
-
+  
   handleOk(): void {
-    console.log('Button ok clicked!');
+    if(this.flag){
+      this.accept(this.id);
+    }
+    else{
+      this.reject(this.id);
+    }
     this.isVisible = false;
   }
 
@@ -54,10 +63,7 @@ export class NewRequestsComponent implements OnInit {
   //function for accepting the leave based on the leave id
   accept(id: string) {
     //taking a message from the manager for accepting the leave
-    let message = prompt('Message for Accepting');
-    if (message) {
-      this.managerMessage = message;
-    }
+    // let message = prompt('Message for Accepting');
     //updating the status of the leave to accepted and
     //appending the manager message to it
     this.leaves.forEach((leave) => {
@@ -89,14 +95,11 @@ export class NewRequestsComponent implements OnInit {
     //updating the users data in the local storage
     localStorage.setItem('users', JSON.stringify(this.users));
     window.location.reload();
+  
   }
   //function for rejecting a leave
   reject(id: string) {
     //taking message from the manager for rejecting the leave
-    let message = prompt('Reason for Rejection');
-    //checking if the manager provided the message or not
-    if (message) {
-      this.managerMessage = message;
       //updating the status of the leave to rejected and
       //appending the manager message to it
       this.leaves.forEach((leave) => {
@@ -127,6 +130,6 @@ export class NewRequestsComponent implements OnInit {
       //updating the users data in the local storage
       localStorage.setItem('users', JSON.stringify(this.users));
       window.location.reload();
-    }
+    
   }
 }

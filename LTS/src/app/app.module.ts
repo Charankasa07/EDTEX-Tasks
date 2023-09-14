@@ -27,6 +27,7 @@ import en from '@angular/common/locales/en';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzInputModule } from 'ng-zorro-antd/input';
 
 registerLocaleData(en);
 
@@ -58,7 +59,8 @@ registerLocaleData(en);
     HttpClientModule,
     NzSpinModule,
     NzModalModule,
-    NzButtonModule
+    NzButtonModule,
+    NzInputModule
   ],
   bootstrap: [AppComponent],
   providers: [

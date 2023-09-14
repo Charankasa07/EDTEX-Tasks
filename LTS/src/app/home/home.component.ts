@@ -7,23 +7,7 @@ import { UserRegister } from '../User';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  isVisible = false;
 
-  constructor() {}
-
-  showModal(): void {
-    this.isVisible = true;
-  }
-
-  handleOk(): void {
-    console.log('Button ok clicked!');
-    this.isVisible = false;
-  }
-
-  handleCancel(): void {
-    console.log('Button cancel clicked!');
-    this.isVisible = false;
-  }
   currentUser: UserRegister = {
     role: '',
     name: '',

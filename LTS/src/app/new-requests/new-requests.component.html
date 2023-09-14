@@ -19,16 +19,31 @@
       <td>{{ leave.endDate | date : "medium" }}</td>
       <td id="reason">{{ leave.reason ? leave.reason : "-" }}</td>
       <td>
-        <button (click)="accept(leave.id);showModal()" ><fa-icon [icon]="acceptIcon" id="accept"></fa-icon></button>
-        <nz-modal (nzVisible)="isVisible" nzTitle="The first Modal" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
-          <ng-container *nzModalContent>
-            <p>Content one</p>
-            <p>Content two</p>
-            <p>Content three</p>
-          </ng-container>
-        </nz-modal>
-        <button (click)="reject(leave.id)" ><fa-icon [icon]="rejectIcon" id="reject"></fa-icon></button>
+        <button (click)="showModal(true,leave.id)">
+          <fa-icon [icon]="acceptIcon" id="accept"></fa-icon>
+        </button>
+       
+        <button (click)="showModal(false,leave.id)">
+          <fa-icon [icon]="rejectIcon" id="reject"></fa-icon>
+        </button>
       </td>
     </tr>
   </table>
 </div>
+
+<nz-modal
+[(nzVisible)]="isVisible"
+nzTitle="Message for Employee"
+(nzOnCancel)="handleCancel()"
+(nzOnOk)="handleOk()"
+>
+<ng-container *nzModalContent>
+  <input
+    nz-input
+    type="text"
+    placeholder="Message"
+    [(ngModel)]="managerMessage"
+    name="managerMessage"
+  />
+</ng-container>
+</nz-modal>
