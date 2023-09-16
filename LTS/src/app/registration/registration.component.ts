@@ -10,7 +10,6 @@ export class RegistrationComponent implements OnInit {
   displayMessage: boolean = false;
   message = '';
   users: UserRegister[] = [];
-  numberOfLeaves = 0;
   user: UserRegister = {
     role: 'employee',
     name: '',
@@ -18,7 +17,7 @@ export class RegistrationComponent implements OnInit {
     email: '',
     password: '',
     leaves: [],
-    numberOfLeaves: this.numberOfLeaves,
+    numberOfLeaves: 0,
   };
   onRegister() {
     //filtering the users with given email inorder to avoid redundant data
@@ -65,7 +64,7 @@ export class RegistrationComponent implements OnInit {
     }
     const numberOfLeavesData = localStorage.getItem('numberOfLeaves');
     if(numberOfLeavesData){
-      this.numberOfLeaves = JSON.parse(numberOfLeavesData)
+      this.user.numberOfLeaves = JSON.parse(numberOfLeavesData)
     }
   }
 }

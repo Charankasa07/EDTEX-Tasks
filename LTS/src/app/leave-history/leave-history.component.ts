@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ignoreElements } from 'rxjs';
 import { Leave, UserRegister } from '../User';
 
 @Component({
@@ -19,6 +20,7 @@ export class LeaveHistoryComponent implements OnInit {
   AcceptedLeaves: Leave[] = [];
   RejectedLeaves: Leave[] = [];
   PendingLeaves: Leave[] = [];
+  numberOfLeaves = 0;
   ngOnInit(): void {
     const currentUserData = localStorage.getItem('currentUser');
     if(currentUserData){
@@ -37,5 +39,9 @@ export class LeaveHistoryComponent implements OnInit {
     this.PendingLeaves = this.currentUser.leaves.filter(
       (leave) => leave.status === 'pending'
     );
+    const leavesData = localStorage.getItem('numberOfLeaves');
+    if(leavesData){
+      this.numberOfLeaves = JSON.parse(leavesData)
+    }
   }
 }

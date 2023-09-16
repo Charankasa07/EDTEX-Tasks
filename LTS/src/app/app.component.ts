@@ -25,6 +25,13 @@ export class AppComponent implements OnInit {
     if (currentUserData) {
       this.currentUser = JSON.parse(currentUserData);
     }
+    const numberOfLeavesData = localStorage.getItem('numberOfLeaves');
+    if(numberOfLeavesData){
+      console.log(JSON.parse(numberOfLeavesData));
+    }
+    else{
+      localStorage.setItem('numberOfLeaves',JSON.stringify(10));
+    }
   }
   async logout() {
     //removing user from cookie storage as he/she is logged out

@@ -59,6 +59,8 @@ export class NewRequestsComponent implements OnInit {
     else{
       window.location.href='http://localhost:4200/login'
     }
+    
+    
   }
   //function for accepting the leave based on the leave id
   accept(id: string) {
