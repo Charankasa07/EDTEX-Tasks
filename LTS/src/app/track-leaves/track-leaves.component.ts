@@ -19,12 +19,17 @@ export class TrackLeavesComponent implements OnInit {
   };
   deleteIcon = faTrashCan;
   editIcon = faPenToSquare;
+  leaves: Leave[] = [];
   ngOnInit(): void {
     const currentUserData = localStorage.getItem('currentUser');
     if (currentUserData) {
       this.currentUser = JSON.parse(currentUserData);
     }else{
       window.location.href='http://localhost:4200/login'
+    }
+    const leavesData = localStorage.getItem('leaves');
+    if (leavesData) {
+      this.leaves = JSON.parse(leavesData);
     }
   }
   delete(id: string) {
@@ -48,6 +53,8 @@ export class TrackLeavesComponent implements OnInit {
         }
       });
     }
+    this.leaves = this.leaves.filter((leave) => leave.id !== id);
+    localStorage.setItem('leaves', JSON.stringify(this.leaves));
     //updating the local storage
     localStorage.setItem('users', JSON.stringify(users));
     window.location.reload();
