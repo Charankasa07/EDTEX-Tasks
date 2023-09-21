@@ -10,7 +10,7 @@ export class EmployeeDashboardComponent implements OnInit {
   currentUser: UserRegister = {
     role: '',
     name: '',
-    mobile: '',
+    phone: '',
     email: '',
     password: '',
     leaves: [],

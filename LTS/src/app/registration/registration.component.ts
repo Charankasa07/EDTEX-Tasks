@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserRegister } from '../User';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-registration',
@@ -13,7 +14,7 @@ export class RegistrationComponent implements OnInit {
   user: UserRegister = {
     role: 'employee',
     name: '',
-    mobile: '',
+    phone: '',
     email: '',
     password: '',
     leaves: [],
@@ -35,7 +36,7 @@ export class RegistrationComponent implements OnInit {
       //storing the user data into the local storage and update it
       this.users.push(this.user);
       localStorage.setItem('users', JSON.stringify(this.users));
-      localStorage.setItem('currentUser',JSON.stringify(this.user));
+      localStorage.setItem('currentUser', JSON.stringify(this.user));
       //if user is employee redirect them to employee dashboard
       if (this.user.role === 'employee') {
         window.location.href = 'http://localhost:4200/employee';
@@ -63,7 +64,7 @@ export class RegistrationComponent implements OnInit {
       }
     }
     const numberOfLeavesData = localStorage.getItem('numberOfLeaves');
-    if(numberOfLeavesData){
+    if (numberOfLeavesData) {
       this.user.numberOfLeaves = JSON.parse(numberOfLeavesData)
     }
   }

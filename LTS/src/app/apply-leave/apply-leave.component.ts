@@ -18,7 +18,7 @@ export class ApplyLeaveComponent implements OnInit {
     leaves: [],
     role: '',
     name: '',
-    mobile: '',
+    phone: '',
     email: '',
     password: '',
     numberOfLeaves: 0,

@@ -12,7 +12,7 @@ export class LeaveHistoryComponent implements OnInit {
     leaves: [],
     role: '',
     name: '',
-    mobile: '',
+    phone: '',
     email: '',
     password: '',
     numberOfLeaves: 0,
@@ -20,6 +20,7 @@ export class LeaveHistoryComponent implements OnInit {
   AcceptedLeaves: Leave[] = [];
   RejectedLeaves: Leave[] = [];
   PendingLeaves: Leave[] = [];
+  leaves : Leave[]=[]
   numberOfLeaves = 0;
   ngOnInit(): void {
     const currentUserData = localStorage.getItem('currentUser');
@@ -30,6 +31,7 @@ export class LeaveHistoryComponent implements OnInit {
     }
     //filtering the leaves of the currentUser based on their status
     //so as to represent the number of leaves in each category
+
     this.AcceptedLeaves = this.currentUser.leaves.filter(
       (leave) => leave.status === 'accepted'
     );

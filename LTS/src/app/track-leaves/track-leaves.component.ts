@@ -11,7 +11,7 @@ export class TrackLeavesComponent implements OnInit {
   currentUser: UserRegister = {
     role: '',
     name: '',
-    mobile: '',
+    phone: '',
     email: '',
     password: '',
     leaves: [],

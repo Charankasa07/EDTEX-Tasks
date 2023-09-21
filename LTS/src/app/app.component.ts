@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   currentUser: UserRegister = {
     role: '',
     name: '',
-    mobile: '',
+    phone: '',
     email: '',
     password: '',
     leaves: [],
