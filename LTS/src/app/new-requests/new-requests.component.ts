@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { Leave, UserRegister } from '../User';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { ThisReceiver } from '@angular/compiler';
 
 @Component({
   selector: 'app-new-requests',
@@ -8,21 +11,24 @@ import { Leave, UserRegister } from '../User';
   styleUrls: ['./new-requests.component.css'],
 })
 export class NewRequestsComponent implements OnInit {
-  isVisible = false;
-  flag : boolean = true;
-  id : string = ''
 
-  showModal(flag : boolean , id : string): void {
+  constructor(private notification: NzNotificationService,private message : NzMessageService) { }
+
+  isVisible = false;
+  flag: boolean = true;
+  id: string = ''
+
+  showModal(flag: boolean, id: string): void {
     this.isVisible = true;
     this.flag = flag
     this.id = id
   }
-  
+
   handleOk(): void {
-    if(this.flag){
+    if (this.flag) {
       this.accept(this.id);
     }
-    else{
+    else {
       this.reject(this.id);
     }
     this.isVisible = false;
@@ -32,7 +38,7 @@ export class NewRequestsComponent implements OnInit {
     console.log('Button cancel clicked!');
     this.isVisible = false;
   }
-  
+
   users: UserRegister[] = [];
   pendingLeaves: Leave[] = [];
   leaves: Leave[] = [];
@@ -40,6 +46,10 @@ export class NewRequestsComponent implements OnInit {
   acceptIcon = faCheck;
   rejectIcon = faXmark;
   ngOnInit(): void {
+
+    this.notification.success(`Welcome Manager`, "Here You can view the new leaves of Employee and react to them and you can view Overview of the Leaves also")
+
+
     const leavesData = localStorage.getItem('leaves');
     if (leavesData) {
       this.leaves = JSON.parse(leavesData);
@@ -53,14 +63,14 @@ export class NewRequestsComponent implements OnInit {
       this.users = JSON.parse(usersData);
     }
     const currentUserData = localStorage.getItem('currentUser')
-    if(currentUserData){
+    if (currentUserData) {
       console.log("hi");
     }
-    else{
-      window.location.href='http://localhost:4200/login'
+    else {
+      window.location.href = 'http://localhost:4200/login'
     }
-    
-    
+
+
   }
   //function for accepting the leave based on the leave id
   accept(id: string) {
@@ -88,7 +98,7 @@ export class NewRequestsComponent implements OnInit {
         if (leave.id === id) {
           leave.status = 'accepted';
           leave.managerReason = this.managerMessage;
-          emp.numberOfLeaves-=1
+          emp.numberOfLeaves -= 1
         }
       });
       //appending the employees array to the users array
@@ -96,42 +106,50 @@ export class NewRequestsComponent implements OnInit {
     });
     //updating the users data in the local storage
     localStorage.setItem('users', JSON.stringify(this.users));
-    window.location.reload();
-  
+
+    this.message.success("Leave Accepted Successfully",{nzDuration:1000})
+    setTimeout(()=>{
+      window.location.reload();
+    },1000)
+
+
   }
   //function for rejecting a leave
   reject(id: string) {
     //taking message from the manager for rejecting the leave
-      //updating the status of the leave to rejected and
-      //appending the manager message to it
-      this.leaves.forEach((leave) => {
+    //updating the status of the leave to rejected and
+    //appending the manager message to it
+    this.leaves.forEach((leave) => {
+      if (leave.id === id) {
+        leave.status = 'rejected';
+        leave.managerReason = this.managerMessage;
+      }
+    });
+    //updating the leaves in the local storage
+    localStorage.setItem('leaves', JSON.stringify(this.leaves));
+    //filtering the employees from the users array
+    let emps: UserRegister[] = this.users.filter(
+      (user) => user.role === 'employee'
+    );
+    //filtering the non-employees(manager) from the users array
+    this.users = this.users.filter((user) => user.role !== 'employee');
+    //updating the employee leave and
+    emps.forEach((emp) => {
+      emp.leaves.forEach((leave) => {
         if (leave.id === id) {
           leave.status = 'rejected';
           leave.managerReason = this.managerMessage;
         }
       });
-      //updating the leaves in the local storage
-      localStorage.setItem('leaves', JSON.stringify(this.leaves));
-      //filtering the employees from the users array
-      let emps: UserRegister[] = this.users.filter(
-        (user) => user.role === 'employee'
-      );
-      //filtering the non-employees(manager) from the users array
-      this.users = this.users.filter((user) => user.role !== 'employee');
-      //updating the employee leave and
-      emps.forEach((emp) => {
-        emp.leaves.forEach((leave) => {
-          if (leave.id === id) {
-            leave.status = 'rejected';
-            leave.managerReason = this.managerMessage;
-          }
-        });
-        //appending the employees array to the users array
-        this.users.push(emp);
-      });
-      //updating the users data in the local storage
-      localStorage.setItem('users', JSON.stringify(this.users));
+      //appending the employees array to the users array
+      this.users.push(emp);
+    });
+    //updating the users data in the local storage
+    localStorage.setItem('users', JSON.stringify(this.users));
+    this.message.success("Leave Rejected Successfully",{nzDuration:1000})
+    setTimeout(()=>{
       window.location.reload();
-    
+    },1000)
+
   }
 }

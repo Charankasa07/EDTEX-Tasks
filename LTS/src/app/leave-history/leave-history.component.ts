@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ignoreElements } from 'rxjs';
 import { Leave, UserRegister } from '../User';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-leave-history',
@@ -8,6 +11,9 @@ import { Leave, UserRegister } from '../User';
   styleUrls: ['./leave-history.component.css'],
 })
 export class LeaveHistoryComponent implements OnInit {
+
+  constructor(private notification : NzNotificationService){}
+
   currentUser: UserRegister = {
     leaves: [],
     role: '',
@@ -31,6 +37,9 @@ export class LeaveHistoryComponent implements OnInit {
     }
     //filtering the leaves of the currentUser based on their status
     //so as to represent the number of leaves in each category
+
+    this.notification.success(`Welcome ${this.currentUser.name }`,"Here You can Apply and Track for Leaves")
+
 
     this.AcceptedLeaves = this.currentUser.leaves.filter(
       (leave) => leave.status === 'accepted'

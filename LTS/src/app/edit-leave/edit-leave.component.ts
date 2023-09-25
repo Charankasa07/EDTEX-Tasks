@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, TitleStrategy } from '@angular/router';
 import { Leave, UserRegister } from '../User';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-edit-leave',
@@ -9,7 +10,8 @@ import { Leave, UserRegister } from '../User';
 })
 export class EditLeaveComponent implements OnInit {
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+      private message : NzMessageService
   ) {}
   leaves: Leave[] = [];
   leaveId = '';
@@ -32,8 +34,6 @@ export class EditLeaveComponent implements OnInit {
     status: '',
     managerReason: '',
   };
-  message = '';
-  displayMessage = false;
   ngOnInit(): void {
     //taking the param from the route
     this.leaveId = this.route.snapshot.params['id'];
@@ -75,26 +75,21 @@ export class EditLeaveComponent implements OnInit {
         //appending the edited leave to the currentUser leaves array
         this.currentUser.leaves.push(this.leave);
         localStorage.setItem('currentUser',JSON.stringify(this.currentUser))
-        // // this.cookieService.delete('currentUser');
-        // this.cookieService.set(
-        //   'currentUser',
-        //   JSON.stringify(this.currentUser),
-        //   1,
-        //   './'
-        // );
 
-        window.location.href = 'http://localhost:4200/employee/track-leaves';
+        this.message.success("Leave Updated SUccessfully",{nzDuration:1000})
+        setTimeout(()=>{
+          window.location.href = 'http://localhost:4200/employee/track-leaves';
+        },1000)
+
+
       } else {
         //displayin error message if the endDate is not greater than startDate
-        this.message = 'End Date must be Start Date or greater than Start Date';
-        this.displayMessage = true;
-        setTimeout(() => (this.displayMessage = false), 2000);
+        this.message.error('End Date must be Start Date or greater than Start Date',{nzDuration:3000})
+        
       }
     } else {
       //displaying error message if the startDate is not greater than the current Date
-      this.message = 'Start Date must be from Today or greater';
-      this.displayMessage = true;
-      setTimeout(() => (this.displayMessage = false), 2000);
+      this.message.error('Start Date must be from Today or greater',{nzDuration:3000})
     }
   }
 }

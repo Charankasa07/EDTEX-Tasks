@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserRegister } from '../User';
 import { HttpClient } from '@angular/common/http';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-registration',
@@ -8,8 +9,9 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./registration.component.css'],
 })
 export class RegistrationComponent implements OnInit {
-  displayMessage: boolean = false;
-  message = '';
+
+  constructor(private message : NzMessageService){}
+
   users: UserRegister[] = [];
   user: UserRegister = {
     role: 'employee',
@@ -28,9 +30,7 @@ export class RegistrationComponent implements OnInit {
     //checking whether any user is already existed with the given email
     if (userData.length) {
       //displaying error message
-      this.message = 'User already exists';
-      this.displayMessage = true;
-      setTimeout(() => (this.displayMessage = false), 2000);
+      this.message.error("User Already Exist's",{nzDuration:3000})
     } else {
       //if no user found with given mail
       //storing the user data into the local storage and update it

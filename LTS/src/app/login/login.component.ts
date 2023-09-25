@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserLogin, UserRegister } from '../User';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-login',
@@ -7,13 +8,14 @@ import { UserLogin, UserRegister } from '../User';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+
+  constructor(private message : NzMessageService){}
+
   users: UserRegister[] = [];
   currentUser: UserLogin = {
     email: '',
     password: '',
   };
-  message = '';
-  displayMessage = false;
   onLogin() {
     //filtering the user data from users in local storage
     //by comparing the email
@@ -23,17 +25,13 @@ export class LoginComponent implements OnInit {
     //checking if the user exists or not so as to continue the login procedure
     if (!userData.length) {
       //displaying error message
-      this.message = "User doesn't exists";
-      this.displayMessage = true;
-      setTimeout(() => (this.displayMessage = false), 2000);
+      this.message.error("User Doesn't Exists");
     } else {
       //comparing the user entered password
       // with the password in the localstorage for the corresponging user
       if (userData[0].password !== this.currentUser.password) {
         //displaying the error message
-        this.message = 'Incorrect Password';
-        this.displayMessage = true;
-        setTimeout(() => (this.displayMessage = false), 2000);
+        this.message.error("Invalid Password",{nzDuration:3000})
       } else {
         localStorage.setItem('currentUser',JSON.stringify(userData[0]))
         //redirecting the user based on the user role

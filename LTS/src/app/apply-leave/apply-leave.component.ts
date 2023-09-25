@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { v4 as uuid } from 'uuid';
 import { Location } from '@angular/common';
 import { Leave, UserRegister } from '../User';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-apply-leave',
@@ -10,7 +11,8 @@ import { Leave, UserRegister } from '../User';
 })
 export class ApplyLeaveComponent implements OnInit {
   constructor(
-    private location: Location
+    private message : NzMessageService
+
   ) {}
   leaves: Leave[] = [];
   users: UserRegister[] = [];
@@ -33,8 +35,6 @@ export class ApplyLeaveComponent implements OnInit {
     status: 'pending',
     managerReason: '',
   };
-  message = '';
-  displayMessage = false;
   //function for applying a leave
   onApplyLeave() {
     //checking whether user has any remaining leaves or not
@@ -58,17 +58,8 @@ export class ApplyLeaveComponent implements OnInit {
             this.leave.name = this.currentUser.name;
             //appending the leave to the currentUser leaves array
             this.currentUser.leaves.push(this.leave);
-            //decrementing the remaining leaves of the user by 1
-            // this.currentUser.numberOfLeaves =
-            //   this.currentUser.numberOfLeaves - 1;
           }
-          // this.cookieService.delete('currentUser');
-          // this.cookieService.set(
-          //   'currentUser',
-          //   JSON.stringify(this.currentUser),
-          //   1,
-          //   ''
-          // );
+  
           localStorage.setItem('currentUser',JSON.stringify(this.currentUser))
           //updating the user leaves in the users array in Local Storage
           this.users.forEach((user) => {
@@ -83,22 +74,22 @@ export class ApplyLeaveComponent implements OnInit {
           this.leaves.push(this.leave);
           //setting the leaves into the local storage
           localStorage.setItem('leaves', JSON.stringify(this.leaves));
-          window.location.href = 'http://localhost:4200/employee/track-leaves';
+          this.message.success("Leave Applied Successfully",{nzDuration:1000});
+          setTimeout(()=>{
+            window.location.href = 'http://localhost:4200/employee/track-leaves';
+          },1000)
         } else {
           //displayin error message if the endDate is not greater than startDate
-          this.message =
-            'End Date must be Start Date or greater than Start Date';
-          this.displayMessage = true;
-          setTimeout(() => (this.displayMessage = false), 2000);
+          this.message.error("End Date must be Start Date or greater",{nzDuration:3000});
+          
         }
       } else {
         //displaying error message if the startDate is not greater than the current Date
-        this.message = 'Start Date must be from Today or greater';
-        this.displayMessage = true;
-        setTimeout(() => (this.displayMessage = false), 2000);
+        this.message.error('Start Date must be from Today or greater',{nzDuration:3000})
+        
       }
     } else {
-      alert('You are out of leaves');
+      this.message.error("You are out of leaves",{nzDuration:3000})
     }
   }
   ngOnInit(): void {

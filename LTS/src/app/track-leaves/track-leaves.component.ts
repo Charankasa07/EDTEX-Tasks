@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserRegister, Leave } from '../User';
 import { faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-track-leaves',
@@ -8,6 +9,9 @@ import { faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./track-leaves.component.css'],
 })
 export class TrackLeavesComponent implements OnInit {
+
+  constructor(private message : NzMessageService){}
+
   currentUser: UserRegister = {
     role: '',
     name: '',
@@ -24,6 +28,8 @@ export class TrackLeavesComponent implements OnInit {
     const currentUserData = localStorage.getItem('currentUser');
     if (currentUserData) {
       this.currentUser = JSON.parse(currentUserData);
+      console.log(this.currentUser);
+      
     }else{
       window.location.href='http://localhost:4200/login'
     }
@@ -57,6 +63,11 @@ export class TrackLeavesComponent implements OnInit {
     localStorage.setItem('leaves', JSON.stringify(this.leaves));
     //updating the local storage
     localStorage.setItem('users', JSON.stringify(users));
-    window.location.reload();
+
+    this.message.success("Leave Deleted Successfully",{nzDuration:1000});
+
+    setTimeout(()=>{
+      window.location.reload();
+    },1000)
   }
 }

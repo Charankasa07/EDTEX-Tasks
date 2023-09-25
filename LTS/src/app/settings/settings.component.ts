@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserRegister } from '../User';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-settings',
@@ -7,6 +8,9 @@ import { UserRegister } from '../User';
   styleUrls: ['./settings.component.css'],
 })
 export class SettingsComponent implements OnInit {
+
+  constructor(private message : NzMessageService){}
+
   oldNumberOfLeaves: number = 0;
   numberOfLeaves!: number;
   users: UserRegister[] = [];
@@ -34,6 +38,10 @@ export class SettingsComponent implements OnInit {
     });
     localStorage.setItem('users', JSON.stringify(this.users));
     localStorage.setItem('numberOfLeaves', JSON.stringify(this.numberOfLeaves));
-    window.location.href = 'http://localhost:4200/manager/new-requests';
+
+    this.message.success("Leaves Count Updated Successfully",{nzDuration:1000})
+    setTimeout(()=>{
+      window.location.href="http://localhost:4200/manager"
+    },1000)
   }
 }
